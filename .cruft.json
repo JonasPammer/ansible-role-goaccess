@@ -1,0 +1,23 @@
+{
+  "template": "https://github.com/JonasPammer/cookiecutter-ansible-role.git",
+  "commit": "3f4a2913defe1d8ccfdb150f385c46b279fc3900",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Jonas Pammer",
+      "email": "opensource@jonaspammer.at",
+      "code_of_conduct_enforcement_contact_email": "opensource@jonaspammer.at",
+      "github_username": "JonasPammer",
+      "galaxy_name": "jonaspammer",
+      "min_ansible_version": "2.11",
+      "allow_duplicates": "no",
+      "ansible_user_needs_to_become": "True",
+      "role_name_": "goaccess",
+      "role_name": "goaccess",
+      "project_slug": "ansible-role-goaccess",
+      "project_short_purpose": "installing GoAccess, a real-time web log analyzer that runs in a terminal or the browser",
+      "_template": "https://github.com/JonasPammer/cookiecutter-ansible-role.git"
+    }
+  },
+  "directory": null
+}
