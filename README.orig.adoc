@@ -57,24 +57,285 @@ must be installed on the Ansible controller.
 
 [source,yaml]
 ----
-variable: default value
+goaccess_dependency_packages: [OS-dependant by default, see /defaults directory]
 ----
-Description
-
-
-[source,yaml]
-----
-variable: [OS-specific by default, see /vars directory]
-----
-Description
-
+List of packages to install from the system's package manager.
+See https://github.com/allinurl/goaccess#distribution-packages[GoAccess Official Documentation] for reference.
 
 [source,yaml]
 ----
-variable: [OS-specific by default, see /vars directory]
+goaccess_install_method: "source"
+----
+One of "`source`" or "`system`".
+
+[[variables::used_by_system_method]]
+=== Role Variables used by the `system`-installation-method
+
+[source,yaml]
+----
+goaccess_system_install_official_repo: true
 ----
 (Debian/Ubuntu only)
-Description
+Wheter to install https://goaccess.io/download#official-repo[
+GoAccess's Official APT Repository].
+This is used to get a more recent version than the one packaged in the system itself.
+
+[source,yaml]
+----
+goaccess_system_package_state: present
+----
+When using `goaccess_system_install_official_repo`
+you can change this to "`latest`" to ensure that
+this role installs the latest available `goaccess` from the system repository.
+
+[[variables::used_by_source_method]]
+=== Role Variables used by the `source`-installation-method
+
+[source,yaml]
+----
+goaccess_source_version: "v{{ goaccess_version }}"
+----
+The https://github.com/allinurl/goaccess/tags[git version] to download.
+
+[source,yaml]
+----
+goaccess_version: 1.6
+----
+The goaccess version string to check against.
+
+[source,yaml]
+----
+goaccess_source_dependency_packages: [OS-dependant by default, see /defaults directory]
+----
+List of packages to install from the system's package manager.
+
+[source,yaml]
+----
+goaccess_source_configure_parameters: "--enable-utf8 --enable-geopip=mmdb"
+----
+Build Configuration Arguments to pass to `./configure` (autoconf)
+which creates the `Makefile` and `src/config.h` (and others).
+
+The Default Options result in the following summary:
+----
+  Prefix         : /usr/local
+  Package        : goaccess
+  Version        : 1.6
+  Compiler flags :  -pthread
+  Linker flags   : -lnsl -lncursesw -lmaxminddb -lpthread
+  UTF-8 support  : yes
+  Dynamic buffer : no
+  Geolocation    : GeoIP2
+  Storage method : In-Memory with On-Disk Persistent Storage
+  TLS/SSL        : no
+  Bugs           : hello@goaccess.io
+----
+
+[TIP]
+These options are also displayed when executing `goaccess --version`.
+
+
+=== Role Variables for creating a GoAccess Configuration File
+
+[source,yaml]
+----
+goaccess_conf_file_dir: "/etc"
+goaccess_conf_file_owner: root
+goaccess_conf_file_group: root
+goaccess_conf_file_mode: u=rw,g=r,o=
+----
+Location of the `.goaccess` file to generate.
+https://goaccess.io/man#options[Can be] in the home directory of a user.
+
+[source,yaml]
+----
+## Time Format Options (required) ##
+goaccess_conf_time_format: "%H:%M:%S" # (Default used by Apache/NGINX's log format Added by role-author)
+
+## Date Format Options (required) ##
+goaccess_conf_date_format: "%d/%b/%Y" # (Default used by Apache/NGINX's log format Added by role-author)
+
+## Log Format Options (required) ##
+goaccess_conf_log_format: COMMON # (Default Added by role-author)
+
+## UI Options ##
+goaccess_conf_color_scheme: 2 # (Default Added by role-author)
+goaccess_conf_config_dialog: false
+goaccess_conf_hl_header: true
+goaccess_conf_html_custom_css: ~
+goaccess_conf_html_custom_js: ~
+goaccess_conf_html_prefs: ~
+goaccess_conf_html_report_title: ~
+goaccess_conf_json_pretty_print: true # (Default Changed by role-author)
+goaccess_conf_no_color: false
+goaccess_conf_no_column_names: false
+goaccess_conf_no_csv_summary: false
+goaccess_conf_no_progress: false
+goaccess_conf_no_tabScroll: false
+goaccess_conf_no_parsing_spinner: ~
+goaccess_conf_no_html_last_updated: ~
+goaccess_conf_with_mouse: true # (Default Changed by role-author)
+goaccess_conf_max_items: ~
+goaccess_COLOR_: []
+# - "HITS color110:color-1"
+# - …
+
+## Server Options ##
+goaccess_conf_addr: ~
+goaccess_conf_daemonize: ~
+goaccess_conf_origin: ~
+goaccess_conf_port: ~
+goaccess_conf_pid_file: ~
+goaccess_conf_real_time_html: ~
+goaccess_conf_ssl_cert: ~
+goaccess_conf_ssl_key: ~
+goaccess_conf_ws_url: ~
+goaccess_conf_fifo_in: ~
+goaccess_conf_fifo_out: ~
+
+## File Options ##
+goaccess_conf_log_file: "/var/log/apache2/access.log"
+goaccess_conf_debug_file: ~
+goaccess_conf_config_file: ~
+goaccess_conf_invalid_requests: ~
+goaccess_conf_no_global_config: ~
+
+## Parser Options ##
+goaccess_conf_agentList: true # (Default Changed by role-author)
+goaccess_conf_with_output_resolver: true # (Default Changed by role-author)
+goaccess_conf_exclude_ip: []
+goaccess_conf_http_method: true
+goaccess_conf_http_protocol: true
+goaccess_conf_output: ~
+goaccess_conf_no_query_string: fals
+goaccess_conf_no_term_resolver: false
+goaccess_conf_444_as_404: false
+goaccess_conf_4xx_to_unique_count: false
+goaccess_conf_anonymize_ip: ~
+goaccess_conf_all_static_files: false
+goaccess_conf_browsers_file: ~
+goaccess_conf_date_spec: ~
+goaccess_conf_double_decode: false
+goaccess_conf_enable_panel: []
+goaccess_conf_hide_referer: []
+goaccess_conf_hour_spec: ~
+goaccess_conf_ignore_crawlers: false
+goaccess_conf_crawlers_only: false
+goaccess_conf_ignore_statics: ~
+goaccess_conf_ignore_panel: []
+goaccess_conf_ignore_referer: []
+goaccess_conf_ignore_status: []
+goaccess_conf_keep_last: ~
+goaccess_conf_no_ip_validation: ~
+goaccess_conf_num_tests: ~
+goaccess_conf_process_and_exit: ~
+goaccess_conf_real_os: true
+goaccess_conf_sort_panel: []
+goaccess_conf_static_file:
+  - .css
+  - .js
+  - .jpg
+  - .png
+  - .gif
+  - .ico
+  - .jpeg
+  - .pdf
+  - .csv
+  - .mpeg
+  - .mpg
+  - .swf
+  - .woff
+  - .woff2
+  - .xls
+  - .xlsx
+  - .doc
+  - .docx
+  - .ppt
+  - .pptx
+  - .txt
+  - .zip
+  - .ogg
+  - .mp3
+  - .mp4
+  - .exe
+  - .iso
+  - .gz
+  - .rar
+  - .svg
+  - .bmp
+  - .tar
+  - .tgz
+  - .tiff
+  - .tif
+  - .ttf
+  - .flv
+  - .dmg
+  - .xz
+  - .zst # (▲ GoAccess Default)
+  - .avi # (▼ Added by role-author)
+  - .bz2
+  - .jar
+  - .ogv
+  - .webm
+  - .mkv
+  - .ods
+  - .odt
+  - .wav
+  - .webp
+
+## GeoIP Options ##
+goaccess_conf_std_geopip: ~
+goaccess_conf_geoip_database: ~
+
+## Persistence Options ##
+goaccess_conf_db_path: ~
+goaccess_conf_persist: ~
+goaccess_conf_restore: ~
+----
+Configuration Options used in goaccess' configuration file template.
+Consult https://github.com/allinurl/goaccess/blob/master/config/goaccess.conf[
+the official GoAccess Git Repository under "config/goaccess.conf"]
+for detailed comments of each variable.
+
+Normal-Properties with value of `None` (`~`) as well as Array-Properties with size of 0 (`[]`)
+will not be inserted-into/used-in the Template.
+
+
+// TODO maybe even add tasks that download geoip2 database if goaccess_conf_geoip-database was given or something like that?
+
+
+==== Role Variables for creating a systemd service
+
+This service only works if you've correctly filled-in
+GoAccess's Configuration File so it starts without error or interuption
+when called with `--real-time-html`.
+
+[source,yaml]
+----
+goaccess_systemd: false
+----
+Toggle this feature.
+
+[source,yaml]
+----
+goaccess_conf_file_owner: root
+goaccess_conf_file_group: root
+goaccess_conf_file_mode: u=rw,g=r,o=
+----
+Systemd Unit and File Permissions Options.
+
+[source,yaml]
+----
+goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
+goaccess_systemd_description: "Service that generates real-time HTML reports of GoAccess using configuration in {{ goaccess_conf_file_dir }}"
+----
+Systemd Unit Options.
+
+[source,yaml]
+----
+goaccess_systemd_html_output_location: "/var/www/html/goaccess.html"
+----
+Path passed to `goaccess --real-time-html`
 
 
 [[public_vars]]
