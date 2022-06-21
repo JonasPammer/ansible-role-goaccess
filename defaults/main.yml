@@ -96,12 +96,12 @@ goaccess_conf_no_color: false
 goaccess_conf_no_column_names: false
 goaccess_conf_no_csv_summary: false
 goaccess_conf_no_progress: false
-goaccess_conf_no_tabScroll: false
+goaccess_conf_no_tab_scroll: false
 goaccess_conf_no_parsing_spinner: ~
 goaccess_conf_no_html_last_updated: ~
 goaccess_conf_with_mouse: true # (Default Changed by role-author)
 goaccess_conf_max_items: ~
-goaccess_COLOR_: []
+goaccess_colors: []
 # - "HITS color110:color-1"
 # - …
 
@@ -126,9 +126,9 @@ goaccess_conf_invalid_requests: ~
 goaccess_conf_no_global_config: ~
 
 ## Parser Options ##
-goaccess_conf_agentList: true # (Default Changed by role-author)
+goaccess_conf_agent_list: true # (Default Changed by role-author)
 goaccess_conf_with_output_resolver: true # (Default Changed by role-author)
-goaccess_conf_exclude_ip: []
+goaccess_conf_exclude_ips: []
 goaccess_conf_http_method: true
 goaccess_conf_http_protocol: true
 goaccess_conf_output: ~
@@ -141,21 +141,21 @@ goaccess_conf_all_static_files: false
 goaccess_conf_browsers_file: ~
 goaccess_conf_date_spec: ~
 goaccess_conf_double_decode: false
-goaccess_conf_enable_panel: []
-goaccess_conf_hide_referer: []
+goaccess_conf_enable_panels: []
+goaccess_conf_hide_referers: []
 goaccess_conf_hour_spec: ~
 goaccess_conf_ignore_crawlers: false
 goaccess_conf_crawlers_only: false
 goaccess_conf_ignore_statics: ~
-goaccess_conf_ignore_panel: []
-goaccess_conf_ignore_referer: []
-goaccess_conf_ignore_status: []
+goaccess_conf_ignore_panels: []
+goaccess_conf_ignore_referers: []
+goaccess_conf_ignore_statuses: []
 goaccess_conf_keep_last: ~
 goaccess_conf_no_ip_validation: ~
 goaccess_conf_num_tests: ~
 goaccess_conf_process_and_exit: ~
 goaccess_conf_real_os: true
-goaccess_conf_sort_panel: []
+goaccess_conf_sort_panels: []
 goaccess_conf_static_file:
   - .css
   - .js
