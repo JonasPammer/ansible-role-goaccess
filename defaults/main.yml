@@ -147,7 +147,9 @@ goaccess_conf_hour_spec: ~
 goaccess_conf_ignore_crawlers: false
 goaccess_conf_crawlers_only: false
 goaccess_conf_ignore_statics: ~
-goaccess_conf_ignore_panels: []
+goaccess_conf_ignore_panels:
+  - REFERRERS
+  - KEYPHRASES
 goaccess_conf_ignore_referers: []
 goaccess_conf_ignore_statuses: []
 goaccess_conf_keep_last: ~
