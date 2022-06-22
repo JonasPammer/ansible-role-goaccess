@@ -27,6 +27,7 @@
     remote_src: true
     src: "{{ goaccess__register_geturl_goaccess_source_code.dest }}"
     dest: "{{ goaccess__register_tempfile_goaccess_source_dir.path }}"
+    extra_opts: [--strip-components=1]
   changed_when: false
   register: goaccess__register_unarchive_goaccess_source_code
 
