@@ -1323,10 +1323,9 @@ ____
 
 ==== GeoIP Options
 
-
-// TODO: Add ability to automatically download defined kind geoip database,
-//       or at least add tasks to copy a defined file path from the ansible controller
-//       if thats not possible.
+[NOTE]
+Feature Request for automating this using this role tracked in
+https://github.com/JonasPammer/ansible-role-goaccess/issues/2
 
 ____
 To feed a database either through GeoIP Legacy or GeoIP2, you need to use the
