@@ -30,8 +30,8 @@
   when: >
     goaccess_install_method in ["source"] and
     (
-    goaccess__register_command_goaccess_version_before.rc is not 0 or
-    goaccess__register_command_goaccess_version_before.stdout is not goaccess_version
+    goaccess__register_command_goaccess_version_before.rc != 0 or
+    goaccess__register_command_goaccess_version_before.stdout == goaccess_version
     )
 
 - name: Generate goaccess configuration file under configured path.
