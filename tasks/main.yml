@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: Install GoAccess dependencies (including optional ones)
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: "{{ goaccess_dependency_packages }}"
     state: present
 
