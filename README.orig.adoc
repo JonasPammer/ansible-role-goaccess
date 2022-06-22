@@ -213,7 +213,7 @@ See `man strftime`
 
 Other examples:
 
-. AWS Amazon CloudFront (Download Distribution), AWS Elastic Load Balancing, W3C (IIS)
+.AWS Amazon CloudFront (Download Distribution), AWS Elastic Load Balancing, W3C (IIS)
 [source,yaml]
 ----
 goaccess_conf_date_format: "%Y-%m-%d"
@@ -1232,8 +1232,8 @@ BY_MTHD:: Sort by http method
 
 Available orders:
 
-ASC::
-DESC::
+* ASC
+* DESC
 
 .Example
 [source,yaml]
@@ -1316,7 +1316,7 @@ goaccess_conf_static_file:
   - .webp
 ----
 ____
-Consider the following extensions as static files
+File Extensions to consider as static files
 The actual '.' is required and extensions are case sensitive
 ____
 
