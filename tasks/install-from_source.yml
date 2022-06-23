@@ -4,7 +4,7 @@
 
 - name: Install System Packages needed for Source Compilation.
   ansible.builtin.package:
-    package: "{{ goaccess_source_dependency_packages }}"
+    name: "{{ goaccess_source_dependency_packages }}"
     state: present
 
 - name: generate temporary directory for downloading goaccess source files
