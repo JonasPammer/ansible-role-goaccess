@@ -44,9 +44,10 @@
   changed_when: false
 
 - name: Install goaccess from Source to System using Make.
-  ansible.builtin.command: |
-    make
-    make install
+  ansible.builtin.command: "{{ item }}"
   args:
     chdir: "{{ goaccess__register_unarchive_goaccess_source_code.dest }}"
   changed_when: false
+  loop:
+    - "make"
+    - "make install"
