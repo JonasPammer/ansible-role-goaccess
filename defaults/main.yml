@@ -52,6 +52,7 @@ _goaccess_source_dependency_packages:
   RedHat:
     - "@Development Tools"
     - autoconf
+    - gettext-devel
   Arch:
     - "autoconf"
 goaccess_source_dependency_packages: "{{
