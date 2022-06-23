@@ -46,6 +46,7 @@ goaccess_source_version: v1.6
 goaccess_version: "{{ goaccess_source_version | replace('v', '') }}"
 _goaccess_source_dependency_packages:
   Debian:
+    - gettext
     - build-essential
     - dh-autoreconf
   RedHat:
