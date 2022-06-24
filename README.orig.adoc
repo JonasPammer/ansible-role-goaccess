@@ -64,9 +64,42 @@ See https://github.com/allinurl/goaccess#distribution-packages[GoAccess Official
 
 [source,yaml]
 ----
-goaccess_install_method: "source"
+goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
 ----
 One of "`source`" or "`system`".
+
+[NOTE]
+====
+I could not get install from source method to work for RedHat
+because of error as seen in
+https://github.com/JonasPammer/ansible-role-goaccess/runs/7031791748?check_suite_focus=true[this CI run]:
+____
+----
+  TASK [ansible-role-goaccess : Execute autoreconf.] *****************************
+  fatal: [instance-py3-ansible-5-fedora35]: FAILED! => changed=false
+    cmd:
+    - autoreconf
+    - --force
+    - --install
+    - --verbose
+    delta: '0:00:00.764053'
+    msg: non-zero return code
+    rc: 1
+    stderr: |-
+      autoreconf: Entering directory `.'
+      autoreconf: running: autopoint --force
+      /usr/bin/autopoint: line 498: find: command not found
+      autopoint: *** infrastructure files for version 0.19 not found; this is autopoint from GNU gettext-tools 0.21
+      autopoint: *** Stop.
+      autoreconf: autopoint failed with exit status: 1
+----
+____
+
+As the goaccess in RockyLinux 8's repository is actually the latest avaiable as of writing this (2022/07)
+I do not see it as a problem at all.
+
+Pull Requests or Issues with Solutions from Wizards of the C world are welcome as always if.
+====
 
 [[variables::install-system]]
 === Role Variables used by the `system`-installation-method

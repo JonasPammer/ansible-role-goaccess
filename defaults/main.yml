@@ -2,7 +2,7 @@
 # defaults file of ansible-role jonaspammer.goaccess
 # See README.adoc for documentation. If you change a default here, also update it in the README.
 
-goaccess_install_method: "source"
+goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
 
 _goaccess_dependency_packages:
   Debian:
