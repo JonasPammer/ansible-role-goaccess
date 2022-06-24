@@ -45,7 +45,7 @@
 - name: Generate GoAccess Systemd Unit File (when enabled).
   ansible.builtin.template:
     src: goaccess.service.jinja2
-    dest: "/etc/systemd/system/{{ goaccess_systemd_name }}.conf"
+    dest: "/etc/systemd/system/{{ goaccess_systemd_name }}.service"
     owner: "{{ goaccess_conf_file_owner }}"
     group: "{{ goaccess_conf_file_group }}"
     mode: "{{ goaccess_conf_file_mode }}"
