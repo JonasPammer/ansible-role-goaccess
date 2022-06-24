@@ -69,7 +69,7 @@ goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
 goaccess_systemd_description: >
   "Service that generates real-time HTML reports of GoAccess
    using configuration in {{ goaccess_conf_file_dir }}"
-goaccess_systemd_html_output_location: "/var/www/html/goaccess.html"
+goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }}.html"
 ### Variables for generating goaccess.conf ###
 goaccess_conf_file_dir: "/root"
 goaccess_conf_file_owner: root
