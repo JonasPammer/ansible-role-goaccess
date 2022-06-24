@@ -113,7 +113,7 @@ goaccess_conf_daemonize: ~
 goaccess_conf_origin: ~
 goaccess_conf_port: ~
 goaccess_conf_pid_file: ~
-goaccess_conf_real_time_html: ~
+goaccess_conf_real_time_html: "{{ goaccess_systemd }}"
 goaccess_conf_ssl_cert: ~
 goaccess_conf_ssl_key: ~
 goaccess_conf_ws_url: ~
