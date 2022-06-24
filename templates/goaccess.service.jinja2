@@ -7,7 +7,7 @@ After=network.target
 Restart=always
 # Configuration is grabbed from the user's home directory:
 WorkingDirectory={{ goaccess_conf_file_dir }}
-ExecStart=/usr/bin/goaccess --real-time-html {{ goaccess_systemd_html_output_location }}
+ExecStart=goaccess --real-time-html {{ goaccess_systemd_html_output_location }}
 User={{ goaccess_conf_file_owner }}
 Group={{ goaccess_conf_file_group }}
 
