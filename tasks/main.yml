@@ -42,6 +42,15 @@
     group: "{{ goaccess_conf_file_group }}"
     mode: "{{ goaccess_conf_file_mode }}"
 
+- name: Ensure configured goaccess default log file has the defined properties and/or permissions.
+  ansible.builtin.file:
+    path: "{{ goaccess_conf_log_file }}"
+    state: "{{ goaccess_conf_log_file__state | default(omit) }}"
+    owner: "{{ goaccess_conf_log_file__owner | default(omit) }}"
+    group: "{{ goaccess_conf_log_file__group | default(omit) }}"
+    mode: "{{ goaccess_conf_log_file__mode | default(omit) }}"
+  when: goaccess_conf_log_file is not None
+
 - name: Generate GoAccess Systemd Unit File (when enabled).
   ansible.builtin.template:
     src: goaccess.service.jinja2
@@ -51,7 +60,7 @@
     mode: "{{ goaccess_conf_file_mode }}"
   when: goaccess_systemd
 
-- name: Start GoAccess Systemd Unit (when enabled).
+- name: Ensure GoAccess Systemd Unit is started and enabled on boot (when enabled).
   ansible.builtin.service:
     name: "{{ goaccess_systemd_name }}"
     state: started

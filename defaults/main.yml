@@ -122,6 +122,10 @@ goaccess_conf_fifo_out: ~
 
 ## File Options ##
 goaccess_conf_log_file: "/var/log/apache2/access.log"
+goaccess_conf_log_file__state: file
+goaccess_conf_log_file__owner: ~
+goaccess_conf_log_file__group: "{{ goaccess_conf_file_group }}"
+goaccess_conf_log_file__mode: u=rw,g=r,o=
 goaccess_conf_debug_file: ~
 goaccess_conf_config_file: ~
 goaccess_conf_invalid_requests: ~
