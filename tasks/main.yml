@@ -49,7 +49,7 @@
     owner: "{{ goaccess_conf_log_file__owner | default(omit) }}"
     group: "{{ goaccess_conf_log_file__group | default(omit) }}"
     mode: "{{ goaccess_conf_log_file__mode | default(omit) }}"
-  when: goaccess_conf_log_file is not None
+  when: goaccess_conf_log_file is not none
 
 - name: Generate GoAccess Systemd Unit File (when enabled).
   ansible.builtin.template:
