@@ -22,7 +22,7 @@
   register: goaccess__register_command_goaccess_version_before
 
 - name: Include Tasks for installing GoAccess by using the system package manager (when configured).
-  ansible.builtin.include_tasks: "install-using_system-{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "install-from_system.yml"
   when: goaccess_install_method in ["system"]
 
 - name: Include Tasks for installing GoAccess from source (when configured).
