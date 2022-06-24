@@ -4,3 +4,24 @@
 
   roles:
     - role: "ansible-role-goaccess"
+
+- name: Converge GoAccess Systemd
+  hosts: all
+
+  vars:
+    goaccess_systemd: true
+    goaccess_conf_file_owner: myuser
+    goaccess_conf_file_group: "{{ goaccess_conf_file_owner }}"
+
+  pre_tasks:
+    - name: create linux group
+      ansible.builtin.group:
+        name: "{{ goaccess_conf_file_group }}"
+        state: present
+    - name: create linux user
+      ansible.builtin.user:
+        name: "{{ goaccess_conf_file_owner }}"
+        group: "{{ goaccess_conf_file_group }}"
+
+  roles:
+    - role: "ansible-role-goaccess"

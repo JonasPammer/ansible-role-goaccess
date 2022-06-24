@@ -4,6 +4,12 @@
   become: true
   gather_facts: false
 
+  vars:
+    apache_vhosts:
+      - servername: "localhost"
+        documentroot: "/var/www/html"
+
   roles:
     - role: jonaspammer.bootstrap
+    - role: jonaspammer.apache2
     #    - role: jonaspammer.core_dependencies
