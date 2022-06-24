@@ -13,3 +13,6 @@
   hosts: all
 
   tasks:
+    - name: Check if 'goaccess --version' works
+      ansible.builtin.command: goaccess --version
+      changed_when: false
