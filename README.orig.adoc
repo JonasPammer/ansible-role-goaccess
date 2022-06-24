@@ -718,7 +718,7 @@ ____
 [[goaccess_conf_real_time_html]]
 [source,yaml]
 ----
-goaccess_conf_real_time_html: ~
+goaccess_conf_real_time_html: "{{ goaccess_systemd }}"
 ----
 ____
 _Boolean._
@@ -1485,10 +1485,10 @@ goaccess_systemd_description: "Service that generates real-time HTML reports of 
 ----
 Systemd Unit Options.
 
-[[]]
+[[goaccess_systemd_html_output_location]]
 [source,yaml]
 ----
-goaccess_systemd_html_output_location: "/var/www/html/goaccess.html"
+goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }}.html"
 ----
 Path passed to `goaccess --real-time-html`
 
