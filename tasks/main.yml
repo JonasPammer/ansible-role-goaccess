@@ -37,7 +37,7 @@
 - name: Generate goaccess configuration file under configured path.
   ansible.builtin.template:
     src: goaccess.conf.jinja2
-    dest: "{{ goaccess_conf_file_dir }}/.goaccess.conf"
+    dest: "{{ goaccess_conf_file }}"
     owner: "{{ goaccess_conf_file_owner }}"
     group: "{{ goaccess_conf_file_group }}"
     mode: "{{ goaccess_conf_file_mode }}"
