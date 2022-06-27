@@ -2,7 +2,13 @@
 
 {% macro _MACRO_OPTION(var, actual_name, commented_default_example_value) -%}
 {% if var is defined and var is not none %}
+{%   if var is sameas true %}
+{{ actual_name }} true
+{%   elif var is sameas false %}
+{{ actual_name }} false
+{%   else %}
 {{ actual_name }} {{ var }}
+{%   endif %}
 {% else %}
 # {{ actual_name }} {{ commented_default_example_value }}
 {% endif %}
