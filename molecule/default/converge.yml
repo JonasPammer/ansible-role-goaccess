@@ -23,6 +23,9 @@
       ansible.builtin.user:
         name: "{{ goaccess_conf_file_owner }}"
         group: "{{ goaccess_conf_file_group }}"
+        shell: /bin/bash # for sanity of debugging
+        groups:
+          - adm # for being able to read /var/log/apache2
 
   roles:
     - role: "ansible-role-goaccess"
