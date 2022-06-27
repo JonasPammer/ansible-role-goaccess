@@ -13,7 +13,7 @@
     goaccess_conf_file: "/home/{{ goaccess_conf_file_owner }}/.goaccessrc"
     goaccess_conf_file_owner: myuser
     goaccess_conf_file_group: "{{ goaccess_conf_file_owner }}"
-    goaccess_conf_log_file__group: ~ # don't change /var/log/apache2/access.log, it's generic.
+    goaccess_conf_log_file__group: "{{ goaccess_conf_file_group }}"
 
   pre_tasks:
     - name: create linux group
@@ -26,7 +26,7 @@
         group: "{{ goaccess_conf_file_group }}"
         shell: /bin/bash # for sanity of debugging
         groups:
-          - adm # for being able to read /var/log/apache2
+          - adm # for being able to read im /var/log/apache2
 
   roles:
     - role: "ansible-role-goaccess"
