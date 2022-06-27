@@ -124,8 +124,15 @@ goaccess_conf_fifo_in: ~
 goaccess_conf_fifo_out: ~
 
 ## File Options ##
-goaccess_conf_log_file: >-
-  /var/log/{{ apache__default_log_dir | default('apache2' if ansible_os_family == 'Debian' else 'httpd')}}/access.log
+_goaccess_conf_log_file:
+  default: /var/log/httpd/access_log
+  Debian: /var/log/apache2/access.log
+goaccess_conf_log_file: "{{
+  _goaccess_conf_log_file[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
+  _goaccess_conf_log_file[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
+  _goaccess_conf_log_file[ansible_distribution])|default(
+  _goaccess_conf_log_file[ansible_os_family])|default(
+  _goaccess_conf_log_file['default']) }}"
 goaccess_conf_log_file__state: file
 goaccess_conf_log_file__owner: ~
 goaccess_conf_log_file__group: ~
