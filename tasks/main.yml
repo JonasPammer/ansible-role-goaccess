@@ -76,4 +76,12 @@
         name: "{{ goaccess_systemd_name }}"
         state: started
         enabled: true
+
+    - name: populate new service facts
+      ansible.builtin.service_facts:
+
+    - name: Assert that GoAccess Systemd Unit is running (not failed / stopped / unknown).
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.services[goaccess_systemd_name + ".service"].state == "running"
   when: goaccess_systemd
