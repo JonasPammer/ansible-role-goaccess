@@ -1493,7 +1493,7 @@ Systemd Unit and File Permissions Options.
 [source,yaml]
 ----
 goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
-goaccess_systemd_description: "Service that generates real-time HTML reports of GoAccess using configuration in {{ goaccess_conf_file }}"
+goaccess_systemd_description: "Service which generates real-time-html reports of {{ goaccess_conf_log_file }} using GoAccess"
 ----
 Systemd Unit Options.
 
