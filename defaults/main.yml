@@ -67,7 +67,7 @@ goaccess_source_configure_parameters: "--enable-utf8 --enable-geopip=mmdb"
 goaccess_systemd: false
 goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
 goaccess_systemd_description: >
-  "Service which generates real-time-html reports of {{ goaccess_conf_log_file }} using GoAccess"
+  Service which generates real-time-html reports of {{ goaccess_conf_log_file }} using GoAccess
 goaccess_systemd_html_output_file: "/var/www/html/{{ goaccess_systemd_name }}.html"
 goaccess_systemd_html_output_file_owner: "{{ goaccess_conf_file_owner }}"
 goaccess_systemd_html_output_file_group: ~
