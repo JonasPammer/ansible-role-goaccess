@@ -173,7 +173,7 @@ These options are also displayed when executing `goaccess --version`.
 
 [source,yaml]
 ----
-goaccess_conf_file_dir: "/etc"
+goaccess_conf_file: "/etc/goaccess.conf"
 goaccess_conf_file_owner: root
 goaccess_conf_file_group: root
 goaccess_conf_file_mode: u=rw,g=r,o=
@@ -1493,7 +1493,7 @@ Systemd Unit and File Permissions Options.
 [source,yaml]
 ----
 goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
-goaccess_systemd_description: "Service that generates real-time HTML reports of GoAccess using configuration in {{ goaccess_conf_file_dir }}"
+goaccess_systemd_description: "Service that generates real-time HTML reports of GoAccess using configuration in {{ goaccess_conf_file }}"
 ----
 Systemd Unit Options.
 
