@@ -822,7 +822,7 @@ ____
 [[goaccess_conf_log_file]]
 [source,yaml]
 ----
-goaccess_conf_log_file: "/var/log/{{ apache__default_log_dir | default('apache2' if ansible_os_family == 'Debian' else 'httpd')}}/access.log"
+goaccess_conf_log_file: [OS-specific by default, see /defaults directory]
 ----
 ____
 Specify the path to the input log file.
