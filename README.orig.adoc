@@ -810,7 +810,7 @@ ____
 ----
 goaccess_conf_log_file__state: file
 goaccess_conf_log_file__owner: ~
-goaccess_conf_log_file__group: "{{ goaccess_conf_file_group }}"
+goaccess_conf_log_file__group: ~
 goaccess_conf_log_file__mode: u=rw,g=r,o=
 ----
 This role will make sure that `goaccess_conf_log_file`
