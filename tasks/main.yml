@@ -51,6 +51,17 @@
     mode: "{{ goaccess_conf_log_file__mode | default(omit, true) }}"
   when: goaccess_conf_log_file is not none
 
+- name: Ensure configured goaccess Systemd HTML output file has the defined properties and/or permissions.
+  ansible.builtin.file:
+    path: "{{ goaccess_systemd_html_output_file }}"
+    state: touch
+    modification_time: preserve
+    access_time: preserve
+    owner: "{{ goaccess_systemd_html_output_file_owner | default(omit, true) }}"
+    group: "{{ goaccess_systemd_html_output_file_group | default(omit, true) }}"
+    mode: "{{ goaccess_systemd_html_output_file_mode | default(omit, true) }}"
+  when: goaccess_systemd
+
 - name: Generate GoAccess Systemd Unit File (when enabled).
   ansible.builtin.template:
     src: goaccess.service.jinja2

@@ -68,7 +68,11 @@ goaccess_systemd: false
 goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
 goaccess_systemd_description: >
   "Service which generates real-time-html reports of {{ goaccess_conf_log_file }} using GoAccess"
-goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }}.html"
+goaccess_systemd_html_output_file: "/var/www/html/{{ goaccess_systemd_name }}.html"
+goaccess_systemd_html_output_file_owner: "{{ goaccess_conf_file_owner }}"
+goaccess_systemd_html_output_file_group: ~
+goaccess_systemd_html_output_file_mode: u=rw,g=r,o=
+
 ### Variables for generating goaccess.conf ###
 goaccess_conf_file: "/root/goaccess.conf"
 goaccess_conf_file_owner: root
