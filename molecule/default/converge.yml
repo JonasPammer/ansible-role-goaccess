@@ -26,7 +26,7 @@
         group: "{{ goaccess_conf_file_group }}"
         shell: /bin/bash # for sanity of debugging
         groups:
-          - adm # for being able to read in /var/log/apache2
+          - "{{ 'adm' if ansible_os_family == 'Debian' else 'root' }}" # for being able to read in /var/log/apache2
 
   roles:
     - role: "ansible-role-goaccess"
