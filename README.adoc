@@ -56,6 +56,8 @@ galaxy_info:
   galaxy_tags: []
 
 dependencies: []
+
+allow_duplicates: true
 ----
 
 
@@ -194,7 +196,7 @@ These options are also displayed when executing `goaccess --version`.
 
 [source,yaml]
 ----
-goaccess_conf_file_dir: "/etc"
+goaccess_conf_file: "/etc/goaccess.conf"
 goaccess_conf_file_owner: root
 goaccess_conf_file_group: root
 goaccess_conf_file_mode: u=rw,g=r,o=
@@ -739,7 +741,7 @@ ____
 [[goaccess_conf_real_time_html]]
 [source,yaml]
 ----
-goaccess_conf_real_time_html: ~
+goaccess_conf_real_time_html: "{{ goaccess_systemd }}"
 ----
 ____
 _Boolean._
@@ -826,6 +828,18 @@ ____
 Specify the path to the input log file.
 If set, it will take priority over `-f` from the command line.
 ____
+
+[source,yaml]
+----
+goaccess_conf_log_file__state: file
+goaccess_conf_log_file__owner: ~
+goaccess_conf_log_file__group: ~
+goaccess_conf_log_file__mode: u=rw,g=r,o=
+----
+This role will make sure that `goaccess_conf_log_file`
+has these configured properties set.
+If you do not want this role to change the properties of the file
+you can set each of these values to None.
 
 [[goaccess_conf_debug_file]]
 [source,yaml]
@@ -1502,14 +1516,14 @@ Systemd Unit and File Permissions Options.
 [source,yaml]
 ----
 goaccess_systemd_name: "goaccess-{{ goaccess_conf_file_owner }}"
-goaccess_systemd_description: "Service that generates real-time HTML reports of GoAccess using configuration in {{ goaccess_conf_file_dir }}"
+goaccess_systemd_description: "Service which generates real-time-html reports of {{ goaccess_conf_log_file }} using GoAccess"
 ----
 Systemd Unit Options.
 
-[[]]
+[[goaccess_systemd_html_output_location]]
 [source,yaml]
 ----
-goaccess_systemd_html_output_location: "/var/www/html/goaccess.html"
+goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }}.html"
 ----
 Path passed to `goaccess --real-time-html`
 
@@ -1552,8 +1566,14 @@ which sources its soft dependencies from `requirements.yml`:
   become: true
   gather_facts: false
 
+  vars:
+    apache_vhosts:
+      - servername: "localhost"
+        documentroot: "/var/www/html"
+
   roles:
     - role: jonaspammer.bootstrap
+    - role: jonaspammer.apache2
     #    - role: jonaspammer.core_dependencies
 ----
 
