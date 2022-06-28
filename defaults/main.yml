@@ -137,6 +137,9 @@ goaccess_conf_log_file__state: file
 goaccess_conf_log_file__owner: ~
 goaccess_conf_log_file__group: ~
 goaccess_conf_log_file__mode: u=rw,g=r,o=
+goaccess_conf_log_dir__owner: ~
+goaccess_conf_log_dir__group: ~
+goaccess_conf_log_dir__mode: ~
 goaccess_conf_debug_file: ~
 goaccess_conf_config_file: ~
 goaccess_conf_invalid_requests: ~
