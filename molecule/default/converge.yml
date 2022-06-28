@@ -14,7 +14,7 @@
     goaccess_conf_file_owner: myuser
     goaccess_conf_file_group: "{{ goaccess_conf_file_owner }}"
     goaccess_conf_log_file_group: "{{ goaccess_conf_file_group }}"
-    goaccess_conf_log_dir_mode: u=rwx,g=r,o=
+    goaccess_conf_log_dir_mode: u=rwx,g=rx,o=
 
   pre_tasks:
     - name: create linux group
