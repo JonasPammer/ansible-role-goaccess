@@ -137,6 +137,7 @@ goaccess_conf_log_file_state: file
 goaccess_conf_log_file_owner: ~
 goaccess_conf_log_file_group: ~
 goaccess_conf_log_file_mode: u=rw,g=r,o=
+goaccess_conf_log_dir_alter: true
 goaccess_conf_log_dir_owner: ~
 goaccess_conf_log_dir_group: ~
 goaccess_conf_log_dir_mode: ~
