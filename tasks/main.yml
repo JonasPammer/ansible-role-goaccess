@@ -85,6 +85,14 @@
         name: "{{ goaccess_systemd_name }}"
         state: started
         enabled: true
+      register: goaccess__register_service_start
+
+    - name: >
+        wait for 2 seconds if systemd start task changed to ensure
+        service_facts gets proper result if doomed to fail
+      ansible.builtin.wait_for:
+        timeout: 2
+      when: goaccess__register_service_start.changed
 
     - name: populate new service facts
       ansible.builtin.service_facts:
