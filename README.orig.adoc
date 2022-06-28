@@ -808,14 +808,14 @@ ____
 
 [source,yaml]
 ----
-goaccess_conf_log_file__state: file
-goaccess_conf_log_file__owner: ~
-goaccess_conf_log_file__group: ~
-goaccess_conf_log_file__mode: u=rw,g=r,o=
+goaccess_conf_log_file_state: file
+goaccess_conf_log_file_owner: ~
+goaccess_conf_log_file_group: ~
+goaccess_conf_log_file_mode: u=rw,g=r,o=
 goaccess_conf_log_dir_alter: true
-goaccess_conf_log_dir__owner: ~
-goaccess_conf_log_dir__group: ~
-goaccess_conf_log_dir__mode: ~
+goaccess_conf_log_dir_owner: ~
+goaccess_conf_log_dir_group: ~
+goaccess_conf_log_dir_mode: ~
 ----
 This role will make sure that `goaccess_conf_log_file`
 as well as its directory (if `goaccess_conf_log_dir_alter` is enabled)

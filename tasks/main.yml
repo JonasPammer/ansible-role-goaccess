@@ -45,19 +45,19 @@
 - name: Ensure configured goaccess default log file has the defined properties and/or permissions.
   ansible.builtin.file:
     path: "{{ goaccess_conf_log_file }}"
-    state: "{{ goaccess_conf_log_file__state | default(omit) }}"
-    owner: "{{ goaccess_conf_log_file__owner | default(omit, true) }}"
-    group: "{{ goaccess_conf_log_file__group | default(omit, true) }}"
-    mode: "{{ goaccess_conf_log_file__mode | default(omit, true) }}"
+    state: "{{ goaccess_conf_log_file_state | default(omit) }}"
+    owner: "{{ goaccess_conf_log_file_owner | default(omit, true) }}"
+    group: "{{ goaccess_conf_log_file_group | default(omit, true) }}"
+    mode: "{{ goaccess_conf_log_file_mode | default(omit, true) }}"
   when: goaccess_conf_log_file is not none
 
 - name: Ensure the directory of the configured goaccess default log file has the defined properties and/or permissions.
   ansible.builtin.file:
     path: "{{ goaccess_conf_log_file | dirname }}"
     state: directory
-    owner: "{{ goaccess_conf_log_dir__owner | default(omit, true) }}"
-    group: "{{ goaccess_conf_log_dir__group | default(omit, true) }}"
-    mode: "{{ goaccess_conf_log_dir__mode | default(omit, true) }}"
+    owner: "{{ goaccess_conf_log_dir_owner | default(omit, true) }}"
+    group: "{{ goaccess_conf_log_dir_group | default(omit, true) }}"
+    mode: "{{ goaccess_conf_log_dir_mode | default(omit, true) }}"
   when: goaccess_conf_log_file is not none and goaccess_conf_log_dir_alter is sameas true
 
 ## Systemd ##
