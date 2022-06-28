@@ -133,13 +133,13 @@ goaccess_conf_log_file: "{{
   _goaccess_conf_log_file[ansible_distribution])|default(
   _goaccess_conf_log_file[ansible_os_family])|default(
   _goaccess_conf_log_file['default']) }}"
-goaccess_conf_log_file__state: file
-goaccess_conf_log_file__owner: ~
-goaccess_conf_log_file__group: ~
-goaccess_conf_log_file__mode: u=rw,g=r,o=
-goaccess_conf_log_dir__owner: ~
-goaccess_conf_log_dir__group: ~
-goaccess_conf_log_dir__mode: ~
+goaccess_conf_log_file_state: file
+goaccess_conf_log_file_owner: ~
+goaccess_conf_log_file_group: ~
+goaccess_conf_log_file_mode: u=rw,g=r,o=
+goaccess_conf_log_dir_owner: ~
+goaccess_conf_log_dir_group: ~
+goaccess_conf_log_dir_mode: ~
 goaccess_conf_debug_file: ~
 goaccess_conf_config_file: ~
 goaccess_conf_invalid_requests: ~
