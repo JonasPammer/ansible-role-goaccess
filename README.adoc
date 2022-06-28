@@ -831,15 +831,24 @@ ____
 
 [source,yaml]
 ----
-goaccess_conf_log_file__state: file
-goaccess_conf_log_file__owner: ~
-goaccess_conf_log_file__group: ~
-goaccess_conf_log_file__mode: u=rw,g=r,o=
+goaccess_conf_log_file_state: file
+goaccess_conf_log_file_owner: ~
+goaccess_conf_log_file_group: ~
+goaccess_conf_log_file_mode: u=rw,g=r,o=
+goaccess_conf_log_dir_alter: true
+goaccess_conf_log_dir_owner: ~
+goaccess_conf_log_dir_group: ~
+goaccess_conf_log_dir_mode: ~
 ----
 This role will make sure that `goaccess_conf_log_file`
+as well as its directory (if `goaccess_conf_log_dir_alter` is enabled)
 has these configured properties set.
-If you do not want this role to change the properties of the file
+If you do not want this role to be in charge of this
 you can set each of these values to None.
+
+Note that when `goaccess_conf_log_dir_alter` is true,
+this role will implicitly create the directory and all intermediate subdirectory
+as per ansible's file module.
 
 [[goaccess_conf_debug_file]]
 [source,yaml]
