@@ -101,6 +101,14 @@ I do not see it as a problem at all.
 Pull Requests or Issues with Solutions from Wizards of the C world are welcome as always if.
 ====
 
+[source,yaml]
+----
+goaccess_command_dir: "{{ '/usr/local/bin' if goaccess_install_method == 'source' else '/usr/bin' }}"
+----
+Directory of `goaccess` binary.
+Used in systemd and for source installation method version check.
+
+
 [[variables::install-system]]
 === Role Variables used by the `system`-installation-method
 
