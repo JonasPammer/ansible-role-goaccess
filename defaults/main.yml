@@ -3,6 +3,7 @@
 # See README.adoc for documentation. If you change a default here, also update it in the README.
 
 goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
+goaccess_command_dir: "/usr/local/bin"
 
 _goaccess_dependency_packages:
   Debian:
