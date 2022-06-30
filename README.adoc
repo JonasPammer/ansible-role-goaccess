@@ -1,7 +1,7 @@
 = ansible-role-goaccess
 Jonas Pammer <opensource@jonaspammer.at>;
 :toc:
-:toclevels: 2
+:toclevels: 3
 :toc-placement!:
 :source-highlighter: rouge
 
@@ -1545,6 +1545,7 @@ goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }
 Path passed to `goaccess --real-time-html`
 
 
+:toclevels: 2
 [[public_vars]]
 == 📜 Facts/Variables defined by this role
 
