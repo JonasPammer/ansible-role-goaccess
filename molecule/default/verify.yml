@@ -20,7 +20,7 @@
     # fixes 403 behaviour of RHEL's Apache
     - name: ensure index.html exists in Apache's DocumentRoot and is the same
       ansible.builtin.copy:
-        path: "/var/www/html/index.html"
+        dest: "/var/www/html/index.html"
         content: |
           <!DOCTYPE html>
           <html lang="en">
