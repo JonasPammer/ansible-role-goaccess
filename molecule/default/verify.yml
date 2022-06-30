@@ -21,6 +21,7 @@
     - name: ensure index.html exists in Apache's DocumentRoot and is the same
       ansible.builtin.copy:
         dest: "/var/www/html/index.html"
+        mode: u=rw,g=r,o=r
         content: |
           <!DOCTYPE html>
           <html lang="en">
