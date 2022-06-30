@@ -109,7 +109,7 @@ Directory of `goaccess` binary.
 Used in systemd and for source installation method version check.
 
 
-[[variables::install-system]]
+[[variables--install-system]]
 === Role Variables used by the `system`-installation-method
 
 [source,yaml]
@@ -129,7 +129,7 @@ When using `goaccess_system_install_official_repo`
 you can change this to "`latest`" to ensure that
 this role installs the latest available `goaccess` from the system repository.
 
-[[variables::install-source]]
+[[variables--install-source]]
 === Role Variables used by the `source`-installation-method
 
 [source,yaml]
@@ -176,7 +176,7 @@ The Default Options result in the following summary:
 These options are also displayed when executing `goaccess --version`.
 
 
-[[variables::config]]
+[[variables--config]]
 === Role Variables for creating a GoAccess Configuration File
 
 [source,yaml]
