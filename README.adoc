@@ -1545,7 +1545,6 @@ goaccess_systemd_html_output_location: "/var/www/html/{{ goaccess_systemd_name }
 Path passed to `goaccess --real-time-html`
 
 
-:toclevels: 2
 [[public_vars]]
 == 📜 Facts/Variables defined by this role
 
