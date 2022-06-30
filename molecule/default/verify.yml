@@ -17,6 +17,22 @@
       ansible.builtin.command: goaccess --version
       changed_when: false
 
+    # fixes 403 behaviour of RHEL's Apache
+    - name: ensure index.html exists in Apache's DocumentRoot and is the same
+      ansible.builtin.copy:
+        path: "/var/www/html/index.html"
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <title>HTML 5 Boilerplate</title>
+            </head>
+            <body>
+              <p> SOME TEXT HERE </p>
+            </body>
+          </html>
+
     - name: contact localhost to get a apache2 access.log going
       ansible.builtin.uri:
         url: "http://localhost"
