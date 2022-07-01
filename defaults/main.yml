@@ -154,7 +154,7 @@ goaccess_conf_exclude_ips: []
 goaccess_conf_http_method: true
 goaccess_conf_http_protocol: true
 goaccess_conf_output: ~
-goaccess_conf_no_query_string: fals
+goaccess_conf_no_query_string: false
 goaccess_conf_no_term_resolver: false
 goaccess_conf_444_as_404: false
 goaccess_conf_4xx_to_unique_count: false
