@@ -444,10 +444,10 @@ ____
 [[goaccess_conf_hl_header]]
 [source,yaml]
 ----
-_Boolean._
 goaccess_conf_hl_header: true
 ----
 ____
+_Boolean._
 Color highlight active panel.
 ____
 
@@ -607,10 +607,10 @@ NOTE: Only the CSV and JSON outputs allow a
 maximum greater than the default value of 366.
 ____
 
-[[goaccess_colors]]
+[[goaccess_conf_colors]]
 [source,yaml]
 ----
-goaccess_colors: []
+goaccess_conf_colors: []
 ----
 ____
 _Array of strings._
@@ -636,7 +636,7 @@ BROWSERS panel can be of color B.
 The following is a 256 color scheme (hybrid palette):
 [source,yaml]
 ----
-goaccess_colors:
+goaccess_conf_colors:
   - "MTRC_HITS              color110:color-1"
   - "MTRC_VISITORS          color173:color-1"
   - "MTRC_DATA              color221:color-1"
@@ -1183,12 +1183,12 @@ ____
 [[goaccess_conf_ignore_panels]]
 [source,yaml]
 ----
-_Array of Strings._
 goaccess_conf_ignore_panels:
   - REFERRERS
   - KEYPHRASES
 ----
 ____
+_Array of Strings._
 Ignore parsing and displaying the given panel.
 Opposite of <<goaccess_conf_enable_panels>>.
 ____
