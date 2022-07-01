@@ -107,7 +107,7 @@ goaccess_conf_no_parsing_spinner: ~
 goaccess_conf_no_html_last_updated: ~
 goaccess_conf_with_mouse: true # (Default Changed by role-author)
 goaccess_conf_max_items: ~
-goaccess_colors: []
+goaccess_conf_colors: []
 # - "HITS color110:color-1"
 # - …
 
