@@ -10,8 +10,12 @@ Jonas Pammer <opensource@jonaspammer.at>;
 https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml[image:https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml/badge.svg[Testing CI]]
 
 
-An Ansible role for installing GoAccess, a real-time web log analyzer that runs in a terminal or the browser.
+An Ansible role that
 
+* installs GoAccess, a real-time web log analyzer that runs in a terminal or the browser
+* generates a full GoAccess configuration file (at a given location)
+* (optionally) generates a systemd service to generate a real-time (continiously updated) html using goaccess
+* (optional) makes sure permissions of all files involved are correct
 
 toc::[]
 
