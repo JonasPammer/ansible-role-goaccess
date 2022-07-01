@@ -667,7 +667,23 @@ pre.rouge {
 <p><a href="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml"><span class="image"><img src="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml/badge.svg" alt="Testing CI"></span></a></p>
 </div>
 <div class="paragraph">
-<p>An Ansible role for installing GoAccess, a real-time web log analyzer that runs in a terminal or the browser.</p>
+<p>An Ansible role that</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>installs GoAccess, a real-time web log analyzer that runs in a terminal or the browser</p>
+</li>
+<li>
+<p>generates a full GoAccess configuration file (at a given location)</p>
+</li>
+<li>
+<p>(optionally) generates a systemd service to generate a real-time (continiously updated) html using goaccess</p>
+</li>
+<li>
+<p>(optional) makes sure permissions of all files involved are correct</p>
+</li>
+</ul>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
@@ -3341,7 +3357,7 @@ SOFTWARE.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-01 11:40:17 UTC
+Last updated 2022-07-01 11:52:15 UTC
 </div>
 </div>
 </body>
