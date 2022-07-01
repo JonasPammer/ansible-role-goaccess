@@ -68,6 +68,7 @@ goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'sys
 ----
 One of "`source`" or "`system`".
 
+[[goaccess_install_method-redhat_notice]]
 [NOTE]
 ====
 I could not get install from source method to work for RedHat
@@ -1484,6 +1485,13 @@ ____
 
 
 ==== Role Variables for creating a systemd service
+
+[NOTE]
+====
+Fails on CentOS 7 because of too old goaccess version in system package manager
+(which is the default install method because of the problem described in
+ <<goaccess_install_method-redhat_notice,goaccess_install_method>>).
+====
 
 This service only works if you've correctly filled-in
 GoAccess's Configuration File so it starts without error or interuption
