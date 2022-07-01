@@ -1,0 +1,3348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Jonas Pammer">
+<title>ansible-role-goaccess</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>ansible-role-goaccess</h1>
+<div class="details">
+<span id="author" class="author">Jonas Pammer</span><br>
+<span id="email" class="email"><a href="mailto:opensource@jonaspammer.at">opensource@jonaspammer.at</a></span><br>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml"><span class="image"><img src="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/ci.yml/badge.svg" alt="Testing CI"></span></a></p>
+</div>
+<div class="paragraph">
+<p>An Ansible role for installing GoAccess, a real-time web log analyzer that runs in a terminal or the browser.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#meta">🔎 Metadata</a></li>
+<li><a href="#requirements">📌 Requirements</a></li>
+<li><a href="#variables">📜 Role Variables</a>
+<ul class="sectlevel2">
+<li><a href="#variables--install-system">Role Variables used by the <code>system</code>-installation-method</a></li>
+<li><a href="#variables--install-source">Role Variables used by the <code>source</code>-installation-method</a></li>
+<li><a href="#variables--config">Role Variables for creating a GoAccess Configuration File</a>
+<ul class="sectlevel3">
+<li><a href="#_time_format">Time Format</a></li>
+<li><a href="#_date_format">Date Format</a></li>
+<li><a href="#_log_format">Log Format</a></li>
+<li><a href="#_ui_options">UI Options</a></li>
+<li><a href="#_server_options">Server Options</a></li>
+<li><a href="#_file_options">File Options</a></li>
+<li><a href="#_parser_options">Parser Options</a></li>
+<li><a href="#_geoip_options">GeoIP Options</a></li>
+<li><a href="#_persistence_options">Persistence Options</a></li>
+<li><a href="#_role_variables_for_creating_a_systemd_service">Role Variables for creating a systemd service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#public_vars">📜 Facts/Variables defined by this role</a></li>
+<li><a href="#dependencies">👫 Dependencies</a></li>
+<li><a href="#example_playbooks">📚 Example Playbook Usages</a></li>
+<li><a href="#development">📝 Development</a>
+<ul class="sectlevel2">
+<li><a href="#development-system-dependencies">📌 Development Machine Dependencies</a></li>
+<li><a href="#development-dependencies">📌 Development Dependencies</a></li>
+<li><a href="#development-guidelines">ℹ️ Ansible Role Development Guidelines</a></li>
+<li><a href="#versioning">📦 Versioning</a></li>
+<li><a href="#testing">🧪 Testing</a>
+<ul class="sectlevel3">
+<li><a href="#_debugging_a_molecule_container">🐛 Debugging a Molecule Container</a></li>
+</ul>
+</li>
+<li><a href="#development-container-extra">🧃 TIP: Containerized Ideal Development Environment</a></li>
+<li><a href="#cookiecutter">🍪 CookieCutter</a>
+<ul class="sectlevel3">
+<li><a href="#_changelog">🕗 Changelog</a></li>
+</ul>
+</li>
+<li><a href="#pre-commit">ℹ️ General Linting and Styling Conventions</a></li>
+</ul>
+</li>
+<li><a href="#contributing">💪 Contributing</a>
+<ul class="sectlevel2">
+<li><a href="#_preamble">🤝 Preamble</a></li>
+<li><a href="#cookiecutter--contributing">🍪 CookieCutter</a></li>
+<li><a href="#_conventional_commits">💬 Conventional Commits</a></li>
+<li><a href="#_getting_started">🚀 Getting Started</a>
+<ul class="sectlevel3">
+<li><a href="#_issues">Issues</a></li>
+<li><a href="#_pull_requests">Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#changelog">🗒 Changelog</a></li>
+<li><a href="#license">⚖️ License</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="meta">🔎 Metadata</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below you can find information on…</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the role&#8217;s required Ansible version</p>
+</li>
+<li>
+<p>the role&#8217;s supported platforms</p>
+</li>
+<li>
+<p>the role&#8217;s <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-dependencies">role dependencies</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title"><a href="meta/main.yml" class="bare">meta/main.yml</a></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="nn">---</span>
+<span class="na">galaxy_info</span><span class="pi">:</span>
+  <span class="na">role_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">goaccess"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">An</span><span class="nv"> </span><span class="s">ansible</span><span class="nv"> </span><span class="s">role</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">installing</span><span class="nv"> </span><span class="s">GoAccess,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">real-time</span><span class="nv"> </span><span class="s">web</span><span class="nv"> </span><span class="s">log</span><span class="nv"> </span><span class="s">analyzer</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">runs</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">terminal</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">browser."</span>
+
+  <span class="na">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">jonaspammer"</span>
+  <span class="na">license</span><span class="pi">:</span> <span class="s">MIT</span>
+
+  <span class="na">min_ansible_version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2.11"</span>
+  <span class="na">platforms</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">EL</span> <span class="c1"># (Enterprise Linux)</span>
+      <span class="na">versions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">8"</span> <span class="c1"># actively tested: rockylinux8, centos8</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Fedora</span>
+      <span class="na">versions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">35"</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Debian</span>
+      <span class="na">versions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">buster</span> <span class="c1"># debian10 (actively tested)</span>
+        <span class="pi">-</span> <span class="s">bullseye</span> <span class="c1"># debian11 (actively tested)</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Ubuntu</span>
+      <span class="na">versions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">xenial</span> <span class="c1"># ubuntu1604 (actively tested)</span>
+        <span class="pi">-</span> <span class="s">bionic</span> <span class="c1"># ubuntu1804 (actively tested)</span>
+        <span class="pi">-</span> <span class="s">focal</span> <span class="c1"># ubuntu2004 (actively tested)</span>
+
+  <span class="na">galaxy_tags</span><span class="pi">:</span> <span class="pi">[]</span>
+
+<span class="na">dependencies</span><span class="pi">:</span> <span class="pi">[]</span>
+
+<span class="na">allow_duplicates</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements">📌 Requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Ansible User needs to be able to <code>become</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://galaxy.ansible.com/community/general"><code>community.general</code> collection</a>
+must be installed on the Ansible controller.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="variables">📜 Role Variables</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_dependency_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List of packages to install from the system&#8217;s package manager.
+See <a href="https://github.com/allinurl/goaccess#distribution-packages">GoAccess Official Documentation</a> for reference.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_install_method</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">'source'</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">ansible_os_family</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">'RedHat'</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">'system'</span><span class="nv"> </span><span class="s">}}"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of &#8220;source&#8221; or &#8220;system&#8221;.</p>
+</div>
+<div id="goaccess_install_method-redhat_notice" class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I could not get install from source method to work for RedHat
+because of error as seen in
+<a href="https://github.com/JonasPammer/ansible-role-goaccess/runs/7031791748?check_suite_focus=true">this CI run</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="listingblock">
+<div class="content">
+<pre>  TASK [ansible-role-goaccess : Execute autoreconf.] *****************************
+  fatal: [instance-py3-ansible-5-fedora35]: FAILED! =&gt; changed=false
+    cmd:
+    - autoreconf
+    - --force
+    - --install
+    - --verbose
+    delta: '0:00:00.764053'
+    msg: non-zero return code
+    rc: 1
+    stderr: |-
+      autoreconf: Entering directory `.'
+      autoreconf: running: autopoint --force
+      /usr/bin/autopoint: line 498: find: command not found
+      autopoint: *** infrastructure files for version 0.19 not found; this is autopoint from GNU gettext-tools 0.21
+      autopoint: *** Stop.
+      autoreconf: autopoint failed with exit status: 1</pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>As the goaccess in RockyLinux 8&#8217;s repository is actually the latest avaiable as of writing this (2022/07)
+I do not see it as a problem at all.</p>
+</div>
+<div class="paragraph">
+<p>Pull Requests or Issues with Solutions from Wizards of the C world are welcome as always if.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_command_dir</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">'/usr/local/bin'</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">goaccess_install_method</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">'source'</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">'/usr/bin'</span><span class="nv"> </span><span class="s">}}"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Directory of <code>goaccess</code> binary.
+Used in systemd and for source installation method version check.</p>
+</div>
+<div class="sect2">
+<h3 id="variables--install-system">Role Variables used by the <code>system</code>-installation-method</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_system_install_official_repo</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Debian/Ubuntu only)
+Wheter to install <a href="https://goaccess.io/download#official-repo">
+GoAccess&#8217;s Official APT Repository</a>.
+This is used to get a more recent version than the one packaged in the system itself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_system_package_state</span><span class="pi">:</span> <span class="s">present</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When using <code>goaccess_system_install_official_repo</code>
+you can change this to &#8220;latest&#8221; to ensure that
+this role installs the latest available <code>goaccess</code> from the system repository.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="variables--install-source">Role Variables used by the <code>source</code>-installation-method</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">v{{</span><span class="nv"> </span><span class="s">goaccess_version</span><span class="nv"> </span><span class="s">}}"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/allinurl/goaccess/tags">git version</a> to download.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_version</span><span class="pi">:</span> <span class="s">1.6</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The goaccess version string to check against.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_dependency_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List of packages to install from the system&#8217;s package manager.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_configure_parameters</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--enable-utf8</span><span class="nv"> </span><span class="s">--enable-geopip=mmdb"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build Configuration Arguments to pass to <code>./configure</code> (autoconf)
+which creates the <code>Makefile</code> and <code>src/config.h</code> (and others).</p>
+</div>
+<div class="paragraph">
+<p>The Default Options result in the following summary:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  Prefix         : /usr/local
+  Package        : goaccess
+  Version        : 1.6
+  Compiler flags :  -pthread
+  Linker flags   : -lnsl -lncursesw -lmaxminddb -lpthread
+  UTF-8 support  : yes
+  Dynamic buffer : no
+  Geolocation    : GeoIP2
+  Storage method : In-Memory with On-Disk Persistent Storage
+  TLS/SSL        : no
+  Bugs           : hello@goaccess.io</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+These options are also displayed when executing <code>goaccess --version</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="variables--config">Role Variables for creating a GoAccess Configuration File</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/goaccess.conf"</span>
+<span class="na">goaccess_conf_file_owner</span><span class="pi">:</span> <span class="s">root</span>
+<span class="na">goaccess_conf_file_group</span><span class="pi">:</span> <span class="s">root</span>
+<span class="na">goaccess_conf_file_mode</span><span class="pi">:</span> <span class="s">u=rw,g=r,o=</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Location of the <code>.goaccess</code> file to generate.
+<a href="https://goaccess.io/man#options">Can be</a> in the home directory of a user.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>Below you can find
+Configuration Options used in goaccess' configuration file template.
+Associated Text for each variable has mostly been taken from
+<a href="https://github.com/allinurl/goaccess/blob/master/config/goaccess.conf">
+the official GoAccess Git&#8217;s example "config/goaccess.conf"</a>
+and added here too as a convenience.</p>
+</div>
+<div class="paragraph">
+<p>Normal-Properties with value of <code>None</code> (<code>~</code>) as well as Array-Properties with size of 0 (<code>[]</code>)
+will not be inserted-into/used-in the Template.</p>
+</div>
+<div class="sect3">
+<h4 id="_time_format">Time Format</h4>
+<div id="goaccess_conf_time_format" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_time_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%H:%M:%S"</span> <span class="c1"># (Default used by Apache/NGINX's log format Added by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><strong>Required.</strong></p>
+</div>
+<div class="paragraph">
+<p>The hour (24-hour clock) [00,23]; leading zeros are permitted but not required.<br>
+The minute [00,59]; leading zeros are permitted but not required.<br>
+The seconds [00,60]; leading zeros are permitted but not required.<br>
+See <code>man strftime</code> for more details</p>
+</div>
+<div class="paragraph">
+<p>Other examples:</p>
+</div>
+<div class="listingblock">
+<div class="title">Google Cloud Storage or The time in microseconds since the Unix epoch</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_time_format</span><span class="pi">:</span> <span class="err">%</span><span class="s">f</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Squid native log format</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_time_format</span><span class="pi">:</span> <span class="err">%</span><span class="s">s</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The default time format works with any of the
+Apache/NGINX&#8217;s log formats denoted in the description of <a href="#goaccess_conf_log_format">[goaccess_conf_log_format]</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_date_format">Date Format</h4>
+<div id="goaccess_conf_date_format" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_date_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%d/%b/%Y"</span> <span class="c1"># (Default used by Apache/NGINX's log format Added by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><strong>Required.</strong></p>
+</div>
+<div class="paragraph">
+<p>The date-format variable followed by a space, specifies
+the log format date containing any combination of regular
+characters and special format specifiers. They all begin with a
+percentage (%) sign.<br>
+See <code>man strftime</code></p>
+</div>
+<div class="paragraph">
+<p>Other examples:</p>
+</div>
+<div class="listingblock">
+<div class="title">AWS Amazon CloudFront (Download Distribution), AWS Elastic Load Balancing, W3C (IIS)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_date_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%Y-%m-%d"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Google Cloud Storage or The time in microseconds since the Unix epoch.</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_date_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%f"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Squid native log format, Caddy</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_date_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%s"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The default time format works with any of the
+Apache/NGINX&#8217;s log formats denoted in the description of <a href="#goaccess_conf_log_format">[goaccess_conf_log_format]</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_log_format">Log Format</h4>
+<div id="goaccess_conf_log_format" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">COMMON</span> <span class="c1"># (Default Added by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The log-format variable followed by a space or \t for
+tab-delimited, specifies the log format string.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If the time/date is a timestamp in seconds or microseconds
+%x must be used instead of %d &amp; %t to represent the date &amp; time.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">NCSA Combined Log Format</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%h</span><span class="nv"> </span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">"%R"</span><span class="nv"> </span><span class="s">"%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">NCSA Combined Log Format with Virtual Host</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%v:%^</span><span class="nv"> </span><span class="s">%h</span><span class="nv"> </span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">"%R"</span><span class="nv"> </span><span class="s">"%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Common Log Format (CLF)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%h</span><span class="nv"> </span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Common Log Format (CLF) with Virtual Host</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%v:%^</span><span class="nv"> </span><span class="s">%h</span><span class="nv"> </span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">W3C</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%d</span><span class="nv"> </span><span class="s">%t</span><span class="nv"> </span><span class="s">%h</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%r</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%u</span><span class="nv"> </span><span class="s">%R'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Squid native log format</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%v</span><span class="nv"> </span><span class="s">%^:</span><span class="nv"> </span><span class="s">%x.%^</span><span class="nv"> </span><span class="s">%~%L</span><span class="nv"> </span><span class="s">%h</span><span class="nv"> </span><span class="s">%^/%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">%m</span><span class="nv"> </span><span class="s">%U'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">AWS | Amazon CloudFront (Download Distribution)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%d\t%t\t%^\t%b\t%h\t%m\t%^\t%r\t%s\t%R\t%u\t%^'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Google Cloud Storage</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">"%x","%h",%^,%^,"%m","%U","%s",%^,"%b","%D",%^,"%R","%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">AWS | Elastic Load Balancing</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%dT%t.%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%h:%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%T</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">"%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">AWSS3 | Amazon Simple Storage Service (S3)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">%h</span><span class="nv"> </span><span class="s">%^"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%L</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">"%R"</span><span class="nv"> </span><span class="s">"%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Virtualmin Log Format with Virtual Host</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%h</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%v</span><span class="nv"> </span><span class="s">%^[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">"%R"</span><span class="nv"> </span><span class="s">"%u"'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Kubernetes Nginx Ingress Log Format</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">[%h]</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">[%d:%t</span><span class="nv"> </span><span class="s">%^]</span><span class="nv"> </span><span class="s">"%r"</span><span class="nv"> </span><span class="s">%s</span><span class="nv"> </span><span class="s">%b</span><span class="nv"> </span><span class="s">"%R"</span><span class="nv"> </span><span class="s">"%u"</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">[%v]</span><span class="nv"> </span><span class="s">%^:%^</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%T</span><span class="nv"> </span><span class="s">%^</span><span class="nv"> </span><span class="s">%^'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">CADDY JSON Structured</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">{ts:"%x.%^",request:{remote_ip:"%h",proto:"%H",method:"%m",host:"%v",uri:"%U",headers:{"User-Agent":["%u","%^"]},tls:{cipher_suite:"%k",proto:"%K"}},duration:"%T",size:"%b",status:"%s",resp_headers:{"Content-Type":["%M;%^"]}}'</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition to specifying the raw log/date/time formats, for
+simplicity, any of the following predefined log format names can be
+supplied to the log/date/time-format variables. GoAccess  can  also
+handle  one  predefined name in one variable and another predefined
+name in another variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">COMBINED</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">VCOMBINED</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">COMMON</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">VCOMMON</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">W3C</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">SQUID</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">CLOUDFRONT</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">CLOUDSTORAGE</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">AWSELB</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">AWSS3</span>
+<span class="na">goaccess_conf_log_format</span><span class="pi">:</span> <span class="s">CADDY</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ui_options">UI Options</h4>
+<div id="goaccess_conf_color_scheme" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_color_scheme</span><span class="pi">:</span> <span class="m">2</span> <span class="c1"># (Default Added by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Choose among color schemes</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">1</dt>
+<dd>
+<p>Monochrome</p>
+</dd>
+<dt class="hdlist1">2</dt>
+<dd>
+<p>Green</p>
+</dd>
+<dt class="hdlist1">3</dt>
+<dd>
+<p>Monokai (if 256-colors supported)</p>
+</dd>
+</dl>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_config_dialog" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_config_dialog</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Prompt log/date configuration window on program start.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_hl_header" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_hl_header</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Color highlight active panel.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_html_custom_css" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_html_custom_css</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Specify a custom CSS file in the HTML report.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_html_custom_js" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_html_custom_js</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Specify a custom JS file in the HTML report.</p>
+</div>
+</blockquote>
+</div>
+<div id="html-prefs" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_html_prefs</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Set default HTML preferences.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+A valid JSON object is required.
+DO NOT USE A MULTILINE JSON OBJECT.
+The parser will only parse the value next to <code>html-prefs</code> (single line)
+It allows the ability to customize each panel plot. See example below.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_html_prefs</span><span class="pi">:</span> <span class="s1">'</span><span class="s">{"theme":"bright","perPage":5,"layout":"horizontal","showTables":true,"visitors":{"plot":{"chartType":"bar"}}}'</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_html_report_title" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_html_report_title</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>String.</em>
+Set HTML report page title and header.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_json_pretty_print" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_json_pretty_print</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># (Default Changed by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Format JSON output using tabs and newlines.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_color" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_color</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Whether to turn off colored output.
+This is the  default output on terminals that do not support colors.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">true</dt>
+<dd>
+<p>no color output</p>
+</dd>
+<dt class="hdlist1">false</dt>
+<dd>
+<p>use color-scheme</p>
+</dd>
+</dl>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_column_names" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_column_names</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Whether to write column names in the terminal output.
+By default, it displays column names
+for each available metric in every panel.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_csv_summary" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_csv_summary</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable summary metrics on the CSV output.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_progress" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_progress</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable progress metrics.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_tab_scroll" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_tab_scroll</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable scrolling through panels on TAB.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_parsing_spinner" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_parsing_spinner</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable progress metrics and parsing spinner.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_html_last_updated" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_html_last_updated</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Do not show the last updated field displayed in the HTML generated report.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_with_mouse" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_with_mouse</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># (Default Changed by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Enable mouse support on main dashboard.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_max_items" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_max_items</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Maximum number of items to show per panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Only the CSV and JSON outputs allow a
+maximum greater than the default value of 366.
+</td>
+</tr>
+</table>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_colors" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_colors</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of strings.</em></p>
+</div>
+<div class="paragraph">
+<p>Custom colors for the terminal output.</p>
+</div>
+<div class="paragraph">
+<p>Color syntax:<br>
+<code>DEFINITION space/tab colorFG#:colorBG# [[attributes,] PANEL]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FG#</code> = foreground color number [-1&#8230;&#8203;255] (-1 = default terminal color)</p>
+</li>
+<li>
+<p><code>BG#</code> = background color number [-1&#8230;&#8203;255] (-1 = default terminal color)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optionally:</p>
+</div>
+<div class="paragraph">
+<p>It is possible to apply color attributes, such as:
+bold,underline,normal,reverse,blink.
+Multiple attributes are comma separated</p>
+</div>
+<div class="paragraph">
+<p>If desired, it is possible to apply custom colors per panel, that is, a
+metric in the REQUESTS panel can be of color A, while the same metric in the
+BROWSERS panel can be of color B.</p>
+</div>
+<div class="paragraph">
+<p>The following is a 256 color scheme (hybrid palette):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_colors</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS</span><span class="nv">              </span><span class="s">color110:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_VISITORS</span><span class="nv">          </span><span class="s">color173:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_DATA</span><span class="nv">              </span><span class="s">color221:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_BW</span><span class="nv">                </span><span class="s">color167:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_AVGTS</span><span class="nv">             </span><span class="s">color143:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_CUMTS</span><span class="nv">             </span><span class="s">color247:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_MAXTS</span><span class="nv">             </span><span class="s">color186:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_PROT</span><span class="nv">              </span><span class="s">color109:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_MTHD</span><span class="nv">              </span><span class="s">color139:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC</span><span class="nv">         </span><span class="s">color186:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC_MAX</span><span class="nv">     </span><span class="s">color139:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC_MAX</span><span class="nv">     </span><span class="s">color139:color-1</span><span class="nv"> </span><span class="s">VISITORS"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC_MAX</span><span class="nv">     </span><span class="s">color139:color-1</span><span class="nv"> </span><span class="s">OS"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC_MAX</span><span class="nv">     </span><span class="s">color139:color-1</span><span class="nv"> </span><span class="s">BROWSERS"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_HITS_PERC_MAX</span><span class="nv">     </span><span class="s">color139:color-1</span><span class="nv"> </span><span class="s">VISIT_TIMES"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_VISITORS_PERC</span><span class="nv">     </span><span class="s">color186:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MTRC_VISITORS_PERC_MAX</span><span class="nv"> </span><span class="s">color139:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">PANEL_COLS</span><span class="nv">             </span><span class="s">color243:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">BARS</span><span class="nv">                   </span><span class="s">color250:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">ERROR</span><span class="nv">                  </span><span class="s">color231:color167"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">SELECTED</span><span class="nv">               </span><span class="s">color7:color167"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">PANEL_ACTIVE</span><span class="nv">           </span><span class="s">color7:color237"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">PANEL_HEADER</span><span class="nv">           </span><span class="s">color250:color235"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">PANEL_DESC</span><span class="nv">             </span><span class="s">color242:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">OVERALL_LBLS</span><span class="nv">           </span><span class="s">color243:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">OVERALL_VALS</span><span class="nv">           </span><span class="s">color167:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">OVERALL_PATH</span><span class="nv">           </span><span class="s">color186:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">ACTIVE_LABEL</span><span class="nv">           </span><span class="s">color139:color235</span><span class="nv"> </span><span class="s">bold</span><span class="nv"> </span><span class="s">underline"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">BG</span><span class="nv">                     </span><span class="s">color250:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">DEFAULT</span><span class="nv">                </span><span class="s">color243:color-1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">PROGRESS</span><span class="nv">               </span><span class="s">color7:color110"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_server_options">Server Options</h4>
+<div id="goaccess_conf_addr" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_addr</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Specify IP address to bind server to.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_addr</span><span class="pi">:</span> <span class="s">0.0.0.0</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_daemonize" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_daemonize</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Run GoAccess as daemon (if --real-time-html enabled).</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_origin" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_origin</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Ensure clients send the specified origin header
+upon the WebSocket handshake.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_origin</span><span class="pi">:</span> <span class="s">http://example.org</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_port" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_port</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The port to which the connection is being attempted to connect.
+By default GoAccess' WebSocket server listens on port 7890
+See man page or <a href="http://gwsocket.io" class="bare">http://gwsocket.io</a> for details.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_port</span><span class="pi">:</span> <span class="s">7890</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_pid_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_pid_file</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Write the PID to a file when used along the daemonize option.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_pid_file</span><span class="pi">:</span> <span class="s">/var/run/goaccess.pid</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_real_time_html" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_real_time_html</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">goaccess_systemd</span><span class="nv"> </span><span class="s">}}"</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Enable real-time HTML output.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ssl_cert" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ssl_cert</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Path to TLS/SSL certificate.</p>
+</div>
+<div class="paragraph">
+<p>Note that ssl-cert and ssl-key need to be used to enable TLS/SSL.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ssl_key" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ssl_key</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Path to TLS/SSL private key.</p>
+</div>
+<div class="paragraph">
+<p>Note that ssl-cert and ssl-key need to be used to enable TLS/SSL.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ws_url" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ws_url</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>URL to which the WebSocket server responds.
+This is the URL supplied to the WebSocket constructor on the client side.</p>
+</div>
+<div class="paragraph">
+<p>Optionally, it is possible to specify the WebSocket URI scheme,
+such as <code>ws://</code> or <code>wss://</code> for unencrypted and encrypted connections.
+e.g., <code>goaccess_conf_ws_url: wss://goaccess.io</code></p>
+</div>
+<div class="paragraph">
+<p>If GoAccess is running behind a proxy, you could set the client side
+to connect to a different port by specifying the host followed by a
+colon and the port.
+e.g., <code>goaccess_conf_ws_url: goaccess.io:9999</code></p>
+</div>
+<div class="paragraph">
+<p><strong>By default</strong>, it will attempt to connect to <code>localhost</code>.
+If GoAccess is running on a remote server,
+the host of the remote server should be specified here.
+Also, make sure it is a valid host and <strong>NOT</strong> an http address.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ws_url</span><span class="pi">:</span> <span class="s">goaccess.io</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_fifo_in" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_fifo_in</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Path to read named pipe (FIFO).</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_fifo_out" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_fifo_out</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Path to write named pipe (FIFO).</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_file_options">File Options</h4>
+<div id="goaccess_conf_log_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_file</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-specific by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Specify the path to the input log file.
+If set, it will take priority over <code>-f</code> from the command line.</p>
+</div>
+</blockquote>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_log_file_state</span><span class="pi">:</span> <span class="s">file</span>
+<span class="na">goaccess_conf_log_file_owner</span><span class="pi">:</span> <span class="s">~</span>
+<span class="na">goaccess_conf_log_file_group</span><span class="pi">:</span> <span class="s">~</span>
+<span class="na">goaccess_conf_log_file_mode</span><span class="pi">:</span> <span class="s">u=rw,g=r,o=</span>
+<span class="na">goaccess_conf_log_dir_alter</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">goaccess_conf_log_dir_owner</span><span class="pi">:</span> <span class="s">~</span>
+<span class="na">goaccess_conf_log_dir_group</span><span class="pi">:</span> <span class="s">~</span>
+<span class="na">goaccess_conf_log_dir_mode</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This role will make sure that <code>goaccess_conf_log_file</code>
+as well as its directory (if <code>goaccess_conf_log_dir_alter</code> is enabled)
+has these configured properties set.
+If you do not want this role to be in charge of this
+you can set each of these values to None.</p>
+</div>
+<div class="paragraph">
+<p>Note that when <code>goaccess_conf_log_dir_alter</code> is true,
+this role will implicitly create the directory and all intermediate subdirectory
+as per ansible&#8217;s file module.</p>
+</div>
+<div id="goaccess_conf_debug_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_debug_file</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Send all debug messages to the specified file.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_config_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_config_file</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Specify a custom configuration file to use.
+If set, it will take priority over the global configuration file (if any).</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_invalid_requests" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_invalid_requests</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Log invalid requests to the specified file.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_global_config" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_global_config</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable loading the global configuration file.</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parser_options">Parser Options</h4>
+<div id="goaccess_conf_agent_list" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_agent_list</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># (Default Changed by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Enable a list of user-agents by host.
+For faster parsing, do not enable this flag.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_with_output_resolver" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_with_output_resolver</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># (Default Changed by role-author)</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Enable IP resolver on HTML|JSON|CSV output.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_exclude_ips" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_exclude_ips</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Strings.</em>
+Exclude an IPv4 or IPv6 from being counted.
+Ranges can be included as well using a dash in between
+the IPs (start-end).</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_exclude_ips</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">exclude-ip</span><span class="nv"> </span><span class="s">127.0.0.1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">exclude-ip</span><span class="nv"> </span><span class="s">192.168.0.1-192.168.0.100"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">exclude-ip</span><span class="nv"> </span><span class="s">::1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">exclude-ip</span><span class="nv"> </span><span class="s">0:0:0:0:0:ffff:808:804-0:0:0:0:0:ffff:808:808"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_http_method" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_http_method</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Include HTTP request method if found.
+This will create a request key containing the request method + the actual request.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_http_protocol" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_http_protocol</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Include HTTP request protocol if found.
+This will create a request key containing the request protocol + the actual request.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_output" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_output</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Write  output to stdout given one of the following files
+and the corresponding extension for the output format:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">/path/file.csv</dt>
+<dd>
+<p>Comma-separated values (CSV)</p>
+</dd>
+<dt class="hdlist1">/path/file.json</dt>
+<dd>
+<p>JSON (JavaScript Object Notation)</p>
+</dd>
+<dt class="hdlist1">/path/file.html</dt>
+<dd>
+<p>HTML</p>
+</dd>
+</dl>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_query_string" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_query_string</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Ignore request&#8217;s query string.
+i.e.,  <code>www.google.com/page.htm?query</code> &#8658; <code>www.google.com/page.htm</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Removing the query string can greatly decrease memory
+consumption, especially on timestamped requests.
+</td>
+</tr>
+</table>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_term_resolver" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_term_resolver</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable IP resolver on terminal output.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_444_as_404" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_444_as_404</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Treat non-standard status code 444 as 404.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_4xx_to_unique_count" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_4xx_to_unique_count</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Add 4xx client errors to the unique visitors count.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_anonymize_ip" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_anonymize_ip</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Enable IP address anonymization.</p>
+</div>
+<div class="paragraph">
+<p>The IP anonymization option sets the last octet of IPv4 user IP addresses and
+the last 80 bits of IPv6 addresses to zeros.
+e.g., <code>192.168.20.100</code> &#8658; <code>192.168.20.0</code>
+e.g., <code>2a03:2880:2110:df07:face:b00c::1</code> &#8658; <code>2a03:2880:2110:df07::</code></p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_all_static_files" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_all_static_files</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Include static files that contain a query string in the static files panel.
+e.g., <code>/fonts/fontawesome-webfont.woff?v=4.0.3</code></p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_browsers_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_browsers_file</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Include an additional delimited list of browsers/crawlers/feeds etc.
+See <a href="https://github.com/allinurl/goaccess/blob/master/config/browsers.list">config/browsers.list</a>
+for an example.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_date_spec" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_date_spec</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Date specificity. Possible values: <code>date</code> (default), or <code>hr</code> or <code>min</code>.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_double_decode" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_double_decode</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Decode double-encoded values.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_enable_panels" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_enable_panels</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Strings.</em>
+Enable parsing/displaying the given panels.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example: Enable every panel</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_enable_panels</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">VISITORS</span>
+  <span class="pi">-</span> <span class="s">REQUESTS</span>
+  <span class="pi">-</span> <span class="s">REQUESTS_STATIC</span>
+  <span class="pi">-</span> <span class="s">NOT_FOUND</span>
+  <span class="pi">-</span> <span class="s">HOSTS</span>
+  <span class="pi">-</span> <span class="s">OS</span>
+  <span class="pi">-</span> <span class="s">BROWSERS</span>
+  <span class="pi">-</span> <span class="s">VISIT_TIMES</span>
+  <span class="pi">-</span> <span class="s">VIRTUAL_HOSTS</span>
+  <span class="pi">-</span> <span class="s">REFERRERS</span>
+  <span class="pi">-</span> <span class="s">REFERRING_SITES</span>
+  <span class="pi">-</span> <span class="s">KEYPHRASES</span>
+  <span class="pi">-</span> <span class="s">STATUS_CODES</span>
+  <span class="pi">-</span> <span class="s">REMOTE_USER</span>
+  <span class="pi">-</span> <span class="s">CACHE_STATUS</span>
+  <span class="pi">-</span> <span class="s">GEO_LOCATION</span>
+  <span class="pi">-</span> <span class="s">MIME_TYPE</span>
+  <span class="pi">-</span> <span class="s">TLS_TYPE</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_hide_referers" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_hide_referers</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Strings.</em>
+Hide a referrer but still count it.
+Wild cards are allowed. i.e., <code>*.bing.com</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_hide_referers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">*.google.com"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">bing.com"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_hour_spec" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_hour_spec</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Hour specificity.
+Possible values: <code>hr</code> (default), or <code>min</code> (tenth of a minute).</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ignore_crawlers" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_crawlers</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em></p>
+</div>
+<div class="paragraph">
+<p>Ignore crawlers from being counted.
+This will ignore robots listed under
+<a href="https://github.com/allinurl/goaccess/blob/master/src/browsers.c"><code>src/browsers.c</code></a>.
+Note that it will count them towards the total
+number of requests, but excluded from any of the panels.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_crawlers_only" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_crawlers_only</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Parse and display crawlers only.
+This will ignore all hosts except robots listed under
+<a href="https://github.com/allinurl/goaccess/blob/master/src/browsers.c"><code>src/browsers.c</code></a>.
+Note that it will count them towards the total number of requests,
+but excluded from any of the panels.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ignore_statics" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_statics</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Ignore static file requests. Possible values:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">req</dt>
+<dd>
+<p>Only ignore request from valid requests</p>
+</dd>
+<dt class="hdlist1">panels</dt>
+<dd>
+<p>Ignore request from panels.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Note that it will count them towards the total number of requests</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ignore_panels" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_panels</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">REFERRERS</span>
+  <span class="pi">-</span> <span class="s">KEYPHRASES</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Strings.</em>
+Ignore parsing and displaying the given panel.
+Opposite of <a href="#goaccess_conf_enable_panels">[goaccess_conf_enable_panels]</a>.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ignore_referers" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_referers</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Strings.</em>
+Ignore referrers from being counted.</p>
+</div>
+<div class="paragraph">
+<p>This supports wild cards. For instance,
+'*' matches 0 or more characters (including spaces)
+'?' matches exactly one character</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_referers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">ignore-referrer</span><span class="nv"> </span><span class="s">*.domain.com"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">ignore-referrer</span><span class="nv"> </span><span class="s">ww?.domain.*"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_ignore_statuses" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_statuses</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Array of Numbers.</em>
+Ignore parsing and displaying one or multiple status code(s)</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_ignore_statuses</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="m">400</span>
+  <span class="pi">-</span> <span class="s">502</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_keep_last" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_keep_last</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Number.</em>
+Keep the last specified number of days in storage.
+This will recycle the storage tables. e.g., keep &amp; show only the last 7 days:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_keep_last</span><span class="pi">:</span> <span class="s">7</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_no_ip_validation" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_no_ip_validation</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Disable client IP validation.
+Useful if IP addresses have been obfuscated before being logged.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_num_tests" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_num_tests</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Number of lines from the access log to test against the provided log/date/time format.
+By default, the parser is set to test 10 lines.
+If set to 0, the parser won&#8217;t test  any  lines and will parse the whole access log.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_process_and_exit" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_process_and_exit</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Parse log and exit without outputting data.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_real_os" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_real_os</span><span class="pi">:</span> <span class="no">true</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Display real OS names. e.g, Windows XP, Snow Leopard.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_sort_panels" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_sort_panels</span><span class="pi">:</span> <span class="pi">[]</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Sort panel on initial load.
+Sort options are separated by comma.
+Options are in the form: <code>PANEL,METRIC,ORDER</code></p>
+</div>
+<div class="paragraph">
+<p>Available metrics:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">BY_HITS</dt>
+<dd>
+<p>Sort by hits</p>
+</dd>
+<dt class="hdlist1">BY_VISITORS</dt>
+<dd>
+<p>Sort by unique visitors</p>
+</dd>
+<dt class="hdlist1">BY_DATA</dt>
+<dd>
+<p>Sort by data</p>
+</dd>
+<dt class="hdlist1">BY_BW</dt>
+<dd>
+<p>Sort by bandwidth</p>
+</dd>
+<dt class="hdlist1">BY_AVGTS</dt>
+<dd>
+<p>Sort by average time served</p>
+</dd>
+<dt class="hdlist1">BY_CUMTS</dt>
+<dd>
+<p>Sort by cumulative time served</p>
+</dd>
+<dt class="hdlist1">BY_MAXTS</dt>
+<dd>
+<p>Sort by maximum time served</p>
+</dd>
+<dt class="hdlist1">BY_PROT</dt>
+<dd>
+<p>Sort by http protocol</p>
+</dd>
+<dt class="hdlist1">BY_MTHD</dt>
+<dd>
+<p>Sort by http method</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Available orders:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ASC</p>
+</li>
+<li>
+<p>DESC</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_sort_panels</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">VISITORS,BY_DATA,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">REQUESTS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">REQUESTS_STATIC,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">NOT_FOUND,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">HOSTS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">OS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">BROWSERS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">VISIT_TIMES,BY_DATA,DESC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">VIRTUAL_HOSTS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">REFERRERS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">REFERRING_SITES,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">KEYPHRASES,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">STATUS_CODES,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">REMOTE_USER,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">CACHE_STATUS,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">GEO_LOCATION,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">MIME_TYPE,BY_HITS,ASC"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLS_TYPE,BY_HITS,ASC"</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_static_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_static_file</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">.css</span>
+  <span class="pi">-</span> <span class="s">.js</span>
+  <span class="pi">-</span> <span class="s">.jpg</span>
+  <span class="pi">-</span> <span class="s">.png</span>
+  <span class="pi">-</span> <span class="s">.gif</span>
+  <span class="pi">-</span> <span class="s">.ico</span>
+  <span class="pi">-</span> <span class="s">.jpeg</span>
+  <span class="pi">-</span> <span class="s">.pdf</span>
+  <span class="pi">-</span> <span class="s">.csv</span>
+  <span class="pi">-</span> <span class="s">.mpeg</span>
+  <span class="pi">-</span> <span class="s">.mpg</span>
+  <span class="pi">-</span> <span class="s">.swf</span>
+  <span class="pi">-</span> <span class="s">.woff</span>
+  <span class="pi">-</span> <span class="s">.woff2</span>
+  <span class="pi">-</span> <span class="s">.xls</span>
+  <span class="pi">-</span> <span class="s">.xlsx</span>
+  <span class="pi">-</span> <span class="s">.doc</span>
+  <span class="pi">-</span> <span class="s">.docx</span>
+  <span class="pi">-</span> <span class="s">.ppt</span>
+  <span class="pi">-</span> <span class="s">.pptx</span>
+  <span class="pi">-</span> <span class="s">.txt</span>
+  <span class="pi">-</span> <span class="s">.zip</span>
+  <span class="pi">-</span> <span class="s">.ogg</span>
+  <span class="pi">-</span> <span class="s">.mp3</span>
+  <span class="pi">-</span> <span class="s">.mp4</span>
+  <span class="pi">-</span> <span class="s">.exe</span>
+  <span class="pi">-</span> <span class="s">.iso</span>
+  <span class="pi">-</span> <span class="s">.gz</span>
+  <span class="pi">-</span> <span class="s">.rar</span>
+  <span class="pi">-</span> <span class="s">.svg</span>
+  <span class="pi">-</span> <span class="s">.bmp</span>
+  <span class="pi">-</span> <span class="s">.tar</span>
+  <span class="pi">-</span> <span class="s">.tgz</span>
+  <span class="pi">-</span> <span class="s">.tiff</span>
+  <span class="pi">-</span> <span class="s">.tif</span>
+  <span class="pi">-</span> <span class="s">.ttf</span>
+  <span class="pi">-</span> <span class="s">.flv</span>
+  <span class="pi">-</span> <span class="s">.dmg</span>
+  <span class="pi">-</span> <span class="s">.xz</span>
+  <span class="pi">-</span> <span class="s">.zst</span> <span class="c1"># (▲ GoAccess Default)</span>
+  <span class="pi">-</span> <span class="s">.avi</span> <span class="c1"># (▼ Added by role-author)</span>
+  <span class="pi">-</span> <span class="s">.bz2</span>
+  <span class="pi">-</span> <span class="s">.jar</span>
+  <span class="pi">-</span> <span class="s">.ogv</span>
+  <span class="pi">-</span> <span class="s">.webm</span>
+  <span class="pi">-</span> <span class="s">.mkv</span>
+  <span class="pi">-</span> <span class="s">.ods</span>
+  <span class="pi">-</span> <span class="s">.odt</span>
+  <span class="pi">-</span> <span class="s">.wav</span>
+  <span class="pi">-</span> <span class="s">.webp</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>File Extensions to consider as static files
+The actual '.' is required and extensions are case sensitive</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_geoip_options">GeoIP Options</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Feature Request for automating this using this role tracked in
+<a href="https://github.com/JonasPammer/ansible-role-goaccess/issues/2" class="bare">https://github.com/JonasPammer/ansible-role-goaccess/issues/2</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>To feed a database either through GeoIP Legacy or GeoIP2, you need to use the
+geoip-database flag below.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">GeoIP Legacy</dt>
+<dd>
+<p>Legacy GeoIP has been discontinued. If your GNU+Linux distribution does not ship
+with the legacy databases, you may still be able to find them through
+different sources. Make sure to download the .dat files.
+Distributed with Creative Commons Attribution-ShareAlike 4.0 International License.
+<a href="https://mailfud.org/geoip-legacy/" class="bare">https://mailfud.org/geoip-legacy/</a></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>IPv4 Country database:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the GeoIP.dat.gz</p>
+</li>
+<li>
+<p>gunzip GeoIP.dat.gz</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>IPv4 City database:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the GeoIPCity.dat.gz</p>
+</li>
+<li>
+<p>gunzip GeoIPCity.dat.gz</p>
+</li>
+</ul>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_std_geopip" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_std_geopip</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Activate Standard GeoIP database for less memory usage (GeoIP Legacy).</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_geoip_database" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_geoip_database</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>GeoIP2</em>.
+For GeoIP2 databases, you can use DB-IP Lite databases.
+DB-IP is licensed under a Creative Commons Attribution 4.0 International License.
+<a href="https://db-ip.com/db/lite.php" class="bare">https://db-ip.com/db/lite.php</a></p>
+</div>
+<div class="paragraph">
+<p>Or you can download them from MaxMind
+<a href="https://dev.maxmind.com/geoip/geoip2/geolite2/" class="bare">https://dev.maxmind.com/geoip/geoip2/geolite2/</a></p>
+</div>
+<div class="paragraph">
+<p>For GeoIP2 City database:
+* Download the GeoLite2-City.mmdb.gz
+* gunzip GeoLite2-City.mmdb.gz</p>
+</div>
+<div class="paragraph">
+<p>For GeoIP2 Country database:
+* Download the GeoLite2-Country.mmdb.gz
+* gunzip GeoLite2-Country.mmdb.gz</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_geoip_database</span><span class="pi">:</span> <span class="s">/usr/local/share/GeoIP/GeoLiteCity.dat</span></code></pre>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_persistence_options">Persistence Options</h4>
+<div id="goaccess_conf_db_path" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_db_path</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Path where the persisted database files are stored on disk.
+The default value is the <code>/tmp</code> directory.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_persist" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_persist</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Boolean.</em>
+Persist parsed data into disk.</p>
+</div>
+</blockquote>
+</div>
+<div id="goaccess_conf_restore" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_restore</span><span class="pi">:</span> <span class="s">~</span></code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Load previously stored data from disk.
+Database files need to exist. See <code>persist</code>.</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_role_variables_for_creating_a_systemd_service">Role Variables for creating a systemd service</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Fails on CentOS 7 because of too old goaccess version in system package manager
+(which is the default install method because of the problem described in
+ <a href="#goaccess_install_method-redhat_notice">goaccess_install_method</a>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This service only works if you&#8217;ve correctly filled-in
+GoAccess&#8217;s Configuration File so it starts without error or interuption
+when called with <code>--real-time-html</code>.</p>
+</div>
+<div id="goaccess_systemd" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_systemd</span><span class="pi">:</span> <span class="no">false</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Toggle this feature.</p>
+</div>
+<div id="goaccess_conf_file" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_conf_file_owner</span><span class="pi">:</span> <span class="s">root</span>
+<span class="na">goaccess_conf_file_group</span><span class="pi">:</span> <span class="s">root</span>
+<span class="na">goaccess_conf_file_mode</span><span class="pi">:</span> <span class="s">u=rw,g=r,o=</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Systemd Unit and File Permissions Options.</p>
+</div>
+<div id="goaccess_systemd_description" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_systemd_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">goaccess-{{</span><span class="nv"> </span><span class="s">goaccess_conf_file_owner</span><span class="nv"> </span><span class="s">}}"</span>
+<span class="na">goaccess_systemd_description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Service</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">real-time-html</span><span class="nv"> </span><span class="s">reports</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">goaccess_conf_log_file</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">GoAccess"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Systemd Unit Options.</p>
+</div>
+<div id="goaccess_systemd_html_output_location" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_systemd_html_output_location</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/var/www/html/{{</span><span class="nv"> </span><span class="s">goaccess_systemd_name</span><span class="nv"> </span><span class="s">}}.html"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Path passed to <code>goaccess --real-time-html</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="public_vars">📜 Facts/Variables defined by this role</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each variable listed in this section
+is dynamically defined when executing this role (and can only be overwritten using <code>ansible.builtin.set_facts</code>) <em>and</em>
+is meant to be used not just internally.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dependencies">👫 Dependencies</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="example_playbooks">📚 Example Playbook Usages</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This role is part of <a href="https://github.com/JonasPammer/ansible-roles">
+many compatible purpose-specific roles of mine</a>.</p>
+</div>
+<div class="paragraph">
+<p>The machine needs to be prepared.
+In CI, this is done in <code>molecule/resources/prepare.yml</code>
+which sources its soft dependencies from <code>requirements.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title"><a href="molecule/resources/prepare.yml" class="bare">molecule/resources/prepare.yml</a></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">prepare</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">become</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">gather_facts</span><span class="pi">:</span> <span class="no">false</span>
+
+  <span class="na">vars</span><span class="pi">:</span>
+    <span class="na">apache_vhosts</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">servername</span><span class="pi">:</span> <span class="s2">"</span><span class="s">localhost"</span>
+        <span class="na">documentroot</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/var/www/html"</span>
+
+  <span class="na">roles</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">role</span><span class="pi">:</span> <span class="s">jonaspammer.bootstrap</span>
+    <span class="pi">-</span> <span class="na">role</span><span class="pi">:</span> <span class="s">jonaspammer.apache2</span>
+    <span class="c1">#    - role: jonaspammer.core_dependencies</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following diagram is a compilation of the "soft dependencies" of this role
+as well as the recursive tree of their soft dependencies.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/JonasPammer/ansible-roles/master/graphs/dependencies_goaccess.svg" alt="requirements.yml dependency graph of jonaspammer.goaccess"></span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Minimum Viable Play</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">roles</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">jonaspammer.goaccess"</span>
+
+<span class="na">vars</span><span class="pi">:</span>
+  <span class="na">some_var</span><span class="pi">:</span> <span class="s2">"</span><span class="s">some_value"</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="development">📝 Development</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://conventionalcommits.org"><span class="image"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></span></a>
+<a href="https://results.pre-commit.ci/latest/github/JonasPammer/ansible-role-goaccess/master"><span class="image"><img src="https://results.pre-commit.ci/badge/github/JonasPammer/ansible-role-goaccess/master.svg" alt="pre-commit.ci status"></span></a></p>
+</div>
+<div class="sect2">
+<h3 id="development-system-dependencies">📌 Development Machine Dependencies</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Python 3.8 or greater</p>
+</li>
+<li>
+<p>Docker</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development-dependencies">📌 Development Dependencies</h3>
+<div class="paragraph">
+<p>Development Dependencies are defined in a
+<a href="https://pip.pypa.io/en/stable/user_guide/#requirements-files">pip requirements file</a>
+named <code>requirements-dev.txt</code>.
+Example Installation Instructions for Linux are shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># "optional": create a python virtualenv and activate it for the current shell session
+$ python3 -m venv venv
+$ source venv/bin/activate
+
+$ python3 -m pip install -r requirements-dev.txt</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development-guidelines">ℹ️ Ansible Role Development Guidelines</h3>
+<div class="paragraph">
+<p>Please take a look at my <a href="https://github.com/JonasPammer/cookiecutter-ansible-role/blob/master/ROLE_DEVELOPMENT_GUIDELINES.adoc">
+Ansible Role Development Guidelines</a>.</p>
+</div>
+<div class="paragraph">
+<p>If interested, I&#8217;ve also written down some
+<a href="https://github.com/JonasPammer/cookiecutter-ansible-role/blob/master/ROLE_DEVELOPMENT_TIPS.adoc">
+General Ansible Role Development (Best) Practices</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="versioning">📦 Versioning</h3>
+<div class="paragraph">
+<p>Versions are defined using <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">Tags</a>,
+which in turn are <a href="https://galaxy.ansible.com/docs/contributing/version.html">recognized and used</a> by Ansible Galaxy.</p>
+</div>
+<div class="paragraph">
+<p>When a new tag is pushed, <a href="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/release-to-galaxy.yml">
+a GitHub CI workflow</a> takes care of importing the role to my Ansible Galaxy Account.
+<span class="image"><img src="https://github.com/JonasPammer/ansible-role-goaccess/actions/workflows/release-to-galaxy.yml/badge.svg" alt="Release CI"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="testing">🧪 Testing</h3>
+<div class="paragraph">
+<p>Automatic Tests are run on each Contribution using GitHub Workflows.</p>
+</div>
+<div class="paragraph">
+<p>The Tests primarily resolve around running
+<a href="https://molecule.readthedocs.io/en/latest/">Molecule</a>
+on a varying set of linux distributions and using various ansible versions,
+as detailed in <a href="https://github.com/JonasPammer/ansible-roles">JonasPammer/ansible-roles</a>.</p>
+</div>
+<div class="paragraph">
+<p>The molecule test also includes a step which lints all ansible playbooks using
+<a href="https://github.com/ansible/ansible-lint#readme"><code>ansible-lint</code></a>
+to check for best practices and behaviour that could potentially be improved.</p>
+</div>
+<div class="paragraph">
+<p>To run the tests, simply run <code>tox</code> on the command line.
+You can pass an optional environment variable to define the distribution of the
+Docker container that will be spun up by molecule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ MOLECULE_DISTRO=centos7 tox</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For a list of possible values fed to <code>MOLECULE_DISTRO</code>,
+take a look at the matrix defined in <a href=".github/workflows/ci.yml" class="bare">.github/workflows/ci.yml</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_debugging_a_molecule_container">🐛 Debugging a Molecule Container</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run your molecule tests with the option <code>MOLECULE_DESTROY=never</code>, e.g.:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ <strong>MOLECULE_DESTROY=never MOLECULE_DISTRO=<mark>ubuntu1604</mark> tox -e py3-ansible-<mark>5</mark></strong>
+...
+  TASK [ansible-role-pip : (redacted).] ************************
+  failed: [instance-py3-ansible-5] => changed=false
+...
+ ___________________________________ summary ____________________________________
+  pre-commit: commands succeeded
+ERROR:   py3-ansible-5: commands failed</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find out the name of the molecule-provisioned docker container:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ <strong>docker ps</strong>
+<mark>30e9b8d59cdf</mark>   geerlingguy/docker-debian10-ansible:latest   "/lib/systemd/systemd"   8 minutes ago   Up 8 minutes                                                                                                    instance-py3-ansible-5</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get into a bash Shell of the container, and do your debugging:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ <strong>docker exec -it <mark>30e9b8d59cdf</mark> /bin/bash</strong>
+
+root@instance-py3-ansible-2:/#
+root@instance-py3-ansible-2:/# python3 --version
+Python 3.8.10
+root@instance-py3-ansible-2:/# ...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you finished your debugging, exit it and destroy the container:</p>
+<div class="listingblock">
+<div class="content">
+<pre>root@instance-py3-ansible-2:/# <strong>exit</strong>
+
+$ <strong>docker stop <mark>30e9b8d59cdf</mark></strong>
+
+$ <strong>docker container rm <mark>30e9b8d59cdf</mark></strong>
+<em>or</em>
+$ <strong>docker container prune</strong></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development-container-extra">🧃 TIP: Containerized Ideal Development Environment</h3>
+<div class="paragraph">
+<p>This Project offers a definition for a "1-Click Containerized Development Environment".</p>
+</div>
+<div class="paragraph">
+<p>This Container even allow one to run docker containers inside of them (Docker-In-Docker, dind),
+allowing for molecule execution.</p>
+</div>
+<div class="paragraph">
+<p>To use it:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you fullfill the <a href="https://code.visualstudio.com/docs/remote/containers#_system-requirements">
+the System requirements of Visual Studio Code Development Containers</a>,
+optionally following the <em>Installation</em>-Section of the linked page section.<br>
+This includes: Installing Docker, Installing Visual Studio Code itself, and Installing the necessary Extension.</p>
+</li>
+<li>
+<p>Clone the project to your machine</p>
+</li>
+<li>
+<p>Open the folder of the repo in Visual Studio Code (<em>File - Open Folder…</em>).</p>
+</li>
+<li>
+<p>If you get a prompt at the lower right corner informing you about the presence of the devcontainer definition,
+you can press the accompanying button to enter it.
+<strong>Otherwise,</strong> you can also execute the Visual Studio Command <code>Remote-Containers: Open Folder in Container</code> yourself (<em>View - Command Palette</em> &#8594; <em>type in the mentioned command</em>).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I recommend using <code>Remote-Containers: Rebuild Without Cache and Reopen in Container</code>
+once here and there as the devcontainer feature does have some problems recognizing
+changes made to its definition properly some times.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You may need to configure your host system to enable the container to use your SSH Keys.</p>
+</div>
+<div class="paragraph">
+<p>The procedure is described <a href="https://code.visualstudio.com/docs/remote/containers#_sharing-git-credentials-with-your-container">
+in the official devcontainer docs under "Sharing Git credentials with your container"</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cookiecutter">🍪 CookieCutter</h3>
+<div class="paragraph">
+<p>This Project shall be kept in sync with
+<a href="https://github.com/JonasPammer/cookiecutter-ansible-role">the CookieCutter it was originally templated from</a>
+using <a href="https://github.com/cruft/cruft">cruft</a> (if possible) or manual alteration (if needed)
+to the best extend possible.</p>
+</div>
+<div class="quoteblock">
+<div class="title">Official Example Usage of <code>cruft update</code></div>
+<blockquote>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/cruft/cruft/master/art/example_update.gif" alt="Official Example Usage of `cruft update`">
+</div>
+</div>
+</blockquote>
+</div>
+<div class="sect3">
+<h4 id="_changelog">🕗 Changelog</h4>
+<div class="paragraph">
+<p>When a new tag is pushed, an appropriate GitHub Release will be created
+by the Repository Maintainer to provide a proper human change log with a title and description.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pre-commit">ℹ️ General Linting and Styling Conventions</h3>
+<div class="paragraph">
+<p>General Linting and Styling Conventions are
+<a href="https://stackoverflow.blog/2020/07/20/linters-arent-in-your-way-theyre-on-your-side/"><strong>automatically</strong> held up to Standards</a>
+by various <a href="https://pre-commit.com/"><code>pre-commit</code></a> hooks, at least to some extend.</p>
+</div>
+<div class="paragraph">
+<p>Automatic Execution of pre-commit is done on each Contribution using
+<a href="https://pre-commit.ci/"><code>pre-commit.ci</code></a><a href="#note_pre-commit-ci">*</a>.
+Pull Requests even automatically get fixed by the same tool,
+at least by hooks that automatically alter files.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Not to confuse:
+Although some pre-commit hooks may be able to warn you about script-analyzed flaws in syntax or even code to some extend (for which reason pre-commit&#8217;s hooks are <strong>part of</strong> the test suite),
+pre-commit itself does not run any real Test Suites.
+For Information on Testing, see <a href="#testing">🧪 Testing</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div id="note_pre-commit-ci" class="paragraph">
+<p>Nevertheless, I recommend you to integrate pre-commit into your local development workflow yourself.</p>
+</div>
+<div class="paragraph">
+<p>This can be done by cd&#8217;ing into the directory of your cloned project and running <code>pre-commit install</code>.
+Doing so will make git run pre-commit checks on every commit you make,
+aborting the commit themselves if a hook alarm&#8217;ed.</p>
+</div>
+<div class="paragraph">
+<p>You can also, for example, execute pre-commit&#8217;s hooks at any time by running <code>pre-commit run --all-files</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributing">💪 Contributing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></span>
+<a href="https://open.vscode.dev/JonasPammer/ansible-role-goaccess"><span class="image"><img src="https://img.shields.io/static/v1?logo=visualstudiocode&amp;label=&amp;message=Open%20in%20Visual%20Studio%20Code&amp;labelColor=2c2c32&amp;color=007acc&amp;logoColor=007acc" alt="Open in Visual Studio Code"></span></a></p>
+</div>
+<div class="paragraph">
+<p>The following sections are generic in nature and are used to help new contributors.
+The actual "Development Documentation" of this project is found under <a href="#development">📝 Development</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_preamble">🤝 Preamble</h3>
+<div class="paragraph">
+<p>First off, thank you for considering contributing to this Project.</p>
+</div>
+<div class="paragraph">
+<p>Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project.
+In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cookiecutter--contributing">🍪 CookieCutter</h3>
+<div class="paragraph">
+<p>This Project owns many of its files to
+<a href="https://github.com/JonasPammer/cookiecutter-ansible-role">the CookieCutter it was originally templated from</a>.</p>
+</div>
+<div class="paragraph">
+<p>Please check if the edit you have in mind is actually applicable to the template
+and if so make an appropriate change there instead.
+Your change may also be applicable partly to the template
+as well as partly to something specific to this project,
+in which case you would be creating multiple PRs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conventional_commits">💬 Conventional Commits</h3>
+<div class="paragraph">
+<p>A casual contributor does not have to worry about following
+<a href="https://github.com/JonasPammer/JonasPammer/blob/master/demystifying/conventional_commits.adoc"><em>the spec</em></a>
+<a href="https://www.conventionalcommits.org/en/v1.0.0/"><em>by definition</em></a>,
+as pull requests are being squash merged into one commit in the project.
+Only core contributors, i.e. those with rights to push to this project&#8217;s branches, must follow it
+(e.g. to allow for automatic version determination and changelog generation to work).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getting_started">🚀 Getting Started</h3>
+<div class="paragraph">
+<p>Contributions are made to this repo via Issues and Pull Requests (PRs).
+A few general guidelines that cover both:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Search for existing Issues and PRs before creating your own.</p>
+</li>
+<li>
+<p>If you&#8217;ve never contributed before, see <a href="https://auth0.com/blog/a-first-timers-guide-to-an-open-source-project/">
+the first timer&#8217;s guide on Auth0&#8217;s blog</a> for resources and tips on how to get started.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_issues">Issues</h4>
+<div class="paragraph">
+<p>Issues should be used to report problems, request a new feature, or to discuss potential changes <strong>before</strong> a PR is created.
+When you <a href="https://github.com/JonasPammer/ansible-role-goaccess/issues/new">
+create a new Issue</a>, a template will be loaded that will guide you through collecting and providing the information we need to investigate.</p>
+</div>
+<div class="paragraph">
+<p>If you find an Issue that addresses the problem you&#8217;re having,
+please add your own reproduction information to the existing issue <strong>rather than creating a new one</strong>.
+Adding a <a href="https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/">reaction</a>
+can also help be indicating to our maintainers that a particular problem is affecting more than just the reporter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pull_requests">Pull Requests</h4>
+<div class="paragraph">
+<p>PRs to this Project are always welcome and can be a quick way to get your fix or improvement slated for the next release.
+<a href="https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/">In general</a>, PRs should:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only fix/add the functionality in question <strong>OR</strong> address wide-spread whitespace/style issues, not both.</p>
+</li>
+<li>
+<p>Add unit or integration tests for fixed or changed functionality (if a test suite already exists).</p>
+</li>
+<li>
+<p><strong>Address a single concern</strong></p>
+</li>
+<li>
+<p><strong>Include documentation</strong> in the repo</p>
+</li>
+<li>
+<p>Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For changes that address core functionality or would require breaking changes (e.g. a major release),
+it&#8217;s best to open an Issue to discuss your proposal first.</p>
+</div>
+<div class="paragraph">
+<p>In general, we follow the "fork-and-pull" Git workflow</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fork the repository to your own Github account</p>
+</li>
+<li>
+<p>Clone the project to your machine</p>
+</li>
+<li>
+<p>Create a branch locally with a succinct but descriptive name</p>
+</li>
+<li>
+<p>Commit changes to the branch</p>
+</li>
+<li>
+<p>Following any formatting and testing guidelines specific to this repo</p>
+</li>
+<li>
+<p>Push changes to your fork</p>
+</li>
+<li>
+<p>Open a PR in our repository and follow the PR template so that we can efficiently review the changes.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="changelog">🗒 Changelog</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Please refer to the
+<a href="https://github.com/JonasPammer/ansible-role-goaccess/releases">Release Page of this Repository</a>
+for a human changelog of the corresponding
+<a href="https://github.com/JonasPammer/ansible-role-goaccess/tags">Tags (Versions) of this Project</a>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this Project adheres to Semantic Versioning.
+Please report any accidental breaking changes of a minor version update.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="license">⚖️ License</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title"><a href="LICENSE" class="bare">LICENSE</a></div>
+<div class="content">
+<pre>MIT License
+
+Copyright (c) 2022 Jonas Pammer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2022-07-01 11:40:17 UTC
+</div>
+</div>
+</body>
+</html>
