@@ -1,5 +1,6 @@
 ---
 # tasks file for testing that variables of ansible-role jonaspammer.goaccess are set correctly
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
 
 - name: test if goaccess_dependency_packages is set correctly
   ansible.builtin.assert:
