@@ -712,6 +712,7 @@ pre.rouge {
 </ul>
 </li>
 <li><a href="#public_vars">📜 Facts/Variables defined by this role</a></li>
+<li><a href="#tags">🏷️ Tags</a></li>
 <li><a href="#dependencies">👫 Dependencies</a></li>
 <li><a href="#example_playbooks">📚 Example Playbook Usages</a></li>
 <li><a href="#development">📝 Development</a>
@@ -2800,6 +2801,35 @@ is meant to be used not just internally.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="tags">🏷️ Tags</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tasks are tagged with the following
+<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#adding-tags-to-roles">tags</a>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tag</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">This role does not have officially documented tags yet.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You can use Ansible to skip tasks, or only run certain tasks by using these tags. By default, all tasks are run when no tags are specified.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="dependencies">👫 Dependencies</h2>
 <div class="sectionbody">
 
@@ -2861,7 +2891,7 @@ as well as the recursive tree of their soft dependencies.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="yaml"><span class="na">roles</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s2">"</span><span class="s">jonaspammer.goaccess"</span>
+  <span class="pi">-</span> <span class="s">jonaspammer.goaccess</span>
 
 <span class="na">vars</span><span class="pi">:</span>
   <span class="na">some_var</span><span class="pi">:</span> <span class="s2">"</span><span class="s">some_value"</span></code></pre>
@@ -3400,7 +3430,7 @@ SOFTWARE.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-27 15:26:24 UTC
+Last updated 2022-08-28 19:32:01 UTC
 </div>
 </div>
 </body>
