@@ -3,7 +3,7 @@
   hosts: all
 
   roles:
-    - role: "ansible-role-goaccess"
+    - name: "ansible-role-goaccess"
 
 - name: Converge GoAccess Systemd
   hosts: all
@@ -30,4 +30,4 @@
           - "{{ 'adm' if ansible_os_family == 'Debian' else 'root' }}" # for being able to read in /var/log/apache2
 
   roles:
-    - role: "ansible-role-goaccess"
+    - name: "ansible-role-goaccess"

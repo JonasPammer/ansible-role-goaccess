@@ -1629,9 +1629,9 @@ which sources its soft dependencies from `requirements.yml`:
         documentroot: "/var/www/html"
 
   roles:
-    - role: jonaspammer.bootstrap
-    - role: jonaspammer.apache2
-    #    - role: jonaspammer.core_dependencies
+    - name: jonaspammer.bootstrap
+    - name: jonaspammer.apache2
+    #    - name: jonaspammer.core_dependencies
 ----
 
 The following diagram is a compilation of the "soft dependencies" of this role
