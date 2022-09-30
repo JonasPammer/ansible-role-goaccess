@@ -1,4 +1,5 @@
 ---
 # configuration file used by https://github.com/JonasPammer/ansible-roles
 
-requirements_not_mandatory_to_role_itself: []
+requirements_not_mandatory_to_role_itself:
+  - jonaspammer.apache2
