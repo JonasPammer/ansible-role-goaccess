@@ -10,6 +10,6 @@
         documentroot: "/var/www/html"
 
   roles:
-    - name: jonaspammer.bootstrap
-    - name: jonaspammer.apache2
-    #    - name: jonaspammer.core_dependencies
+    - role: jonaspammer.bootstrap
+    - role: jonaspammer.apache2
+    #    - role: jonaspammer.core_dependencies
