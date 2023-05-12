@@ -2,9 +2,14 @@
 # tasks file of ansible-role jonaspammer.goaccess
 # only included when needed
 
-- name: Install System Packages needed for Source Compilation.
+- name: Install Essential System Packages needed for building GoAccess from source.
   ansible.builtin.package:
-    name: "{{ goaccess_source_dependency_packages }}"
+    name: "{{ goaccess_source_buildtool_packages }}"
+    state: present
+
+- name: Install System Packages needed on some distros for building GoAccess from source.
+  ansible.builtin.package:
+    name: "{{ goaccess_source_system_packages }}"
     state: present
 
 - name: generate temporary directory for downloading goaccess source files

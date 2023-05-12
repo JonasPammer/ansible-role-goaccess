@@ -5,7 +5,33 @@
 goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
 goaccess_command_dir: "{{ '/usr/local/bin' if goaccess_install_method == 'source' else '/usr/bin' }}"
 
-_goaccess_dependency_packages:
+### Variables used by system installation method ###
+goaccess_system_install_official_repo: true
+goaccess_system_package_state: present
+
+### Variables used by source installation method ###
+goaccess_source_version: v1.6
+goaccess_version: "{{ goaccess_source_version | replace('v', '') }}"
+_goaccess_source_buildtool_packages:
+  Debian:
+    - gettext
+    - build-essential
+    - dh-autoreconf
+  RedHat:
+    - "@Development Tools"
+    - autoconf
+    - gettext-devel
+  Arch:
+    - "autoconf"
+goaccess_source_buildtool_packages: "{{
+  _goaccess_source_buildtool_packages[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
+  _goaccess_source_buildtool_packages[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
+  _goaccess_source_buildtool_packages[ansible_distribution])|default(
+  _goaccess_source_buildtool_packages[ansible_os_family])|default(
+  _goaccess_source_buildtool_packages['default']) }}"
+goaccess_source_configure_parameters: "--enable-utf8 --enable-geopip=mmdb"
+
+_goaccess_source_system_packages:
   Debian:
     - libncursesw5-dev
     - libgeoip-dev
@@ -35,38 +61,12 @@ _goaccess_dependency_packages:
     - GeoIP
     - libmaxminddb
     - openssl
-goaccess_dependency_packages: "{{
-  _goaccess_dependency_packages[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
-  _goaccess_dependency_packages[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
-  _goaccess_dependency_packages[ansible_distribution])|default(
-  _goaccess_dependency_packages[ansible_os_family])|default(
-  _goaccess_dependency_packages['default']) }}"
-
-### Variables used by system installation method ###
-goaccess_system_install_official_repo: true
-goaccess_system_package_state: present
-
-### Variables used by source installation method ###
-goaccess_source_version: v1.6
-goaccess_version: "{{ goaccess_source_version | replace('v', '') }}"
-_goaccess_source_dependency_packages:
-  Debian:
-    - gettext
-    - build-essential
-    - dh-autoreconf
-  RedHat:
-    - "@Development Tools"
-    - autoconf
-    - gettext-devel
-  Arch:
-    - "autoconf"
-goaccess_source_dependency_packages: "{{
-  _goaccess_source_dependency_packages[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
-  _goaccess_source_dependency_packages[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
-  _goaccess_source_dependency_packages[ansible_distribution])|default(
-  _goaccess_source_dependency_packages[ansible_os_family])|default(
-  _goaccess_source_dependency_packages['default']) }}"
-goaccess_source_configure_parameters: "--enable-utf8 --enable-geopip=mmdb"
+goaccess_source_system_packages: "{{
+  _goaccess_source_system_packages[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
+  _goaccess_source_system_packages[ansible_os_family ~ '_' ~ ansible_distribution_major_version])|default(
+  _goaccess_source_system_packages[ansible_distribution])|default(
+  _goaccess_source_system_packages[ansible_os_family])|default(
+  _goaccess_source_system_packages['default']) }}"
 
 ### Variables for generating systemd service configuration file ###
 goaccess_systemd: false

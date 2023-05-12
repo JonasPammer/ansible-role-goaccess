@@ -6,11 +6,6 @@
   run_once: true
   delegate_to: localhost
 
-- name: Install GoAccess dependencies (including optional ones)
-  ansible.builtin.package:
-    name: "{{ goaccess_dependency_packages }}"
-    state: present
-
 - name: get current goaccess version # noqa risky-shell-pipe
   ansible.builtin.shell: >
     goaccess --version |
