@@ -16,6 +16,10 @@ _goaccess_dependency_packages:
     - geoip-devel
     - libmaxminddb-devel
     - openssl-devel
+  RedHat_9:
+    - ncurses-devel
+    - libmaxminddb
+    - openssl-devel
   Arch:
     - ncurses
     - geoip
