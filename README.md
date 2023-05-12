@@ -71,10 +71,6 @@ The [`community.general` collection](https://galaxy.ansible.com/community/genera
 
 # 📜 Role Variables
 
-    goaccess_dependency_packages: [OS-dependant by default, see /defaults directory]
-
-List of packages to install from the system’s package manager. See [GoAccess Official Documentation](https://github.com/allinurl/goaccess#distribution-packages) for reference.
-
     goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
 
 One of “source” or “system”.
@@ -127,9 +123,13 @@ The [git version](https://github.com/allinurl/goaccess/tags) to download.
 
 The goaccess version string to check against.
 
-    goaccess_source_dependency_packages: [OS-dependant by default, see /defaults directory]
+    goaccess_source_buildtool_packages: [OS-dependant by default, see /defaults directory]
 
-List of packages to install from the system’s package manager.
+List of packages needed for building GoAccess from source (`gcc`, `autoconf`, `gettext`, `autopoint` etc) which will be installed using the system’s package manager.
+
+    goaccess_source_system_packages: [OS-dependant by default, see /defaults directory]
+
+List of dependencies needed in some distros to build GoAccess from source (`NCurses` (required), `GeoIP` / `GeoIP2` (optional), `OpenSSL` (optional)) which will be installed using the system’s package manager. The default value of this mostly represents [the table found in the official documentation](https://github.com/allinurl/goaccess#distribution-packages).
 
     goaccess_source_configure_parameters: "--enable-utf8 --enable-geopip=mmdb"
 
