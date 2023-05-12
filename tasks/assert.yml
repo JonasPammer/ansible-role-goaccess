@@ -2,12 +2,12 @@
 # tasks file for testing that variables of ansible-role jonaspammer.goaccess are set correctly
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
 
-- name: test if goaccess_dependency_packages is set correctly
+- name: test if goaccess_source_system_packages is set correctly
   ansible.builtin.assert:
     that:
-      - goaccess_dependency_packages is defined
-      - goaccess_dependency_packages is string or
-        goaccess_dependency_packages is iterable
+      - goaccess_source_system_packages is defined
+      - goaccess_source_system_packages is string or
+        goaccess_source_system_packages is iterable
     quiet: true
 
 - name: test if goaccess_install_method is set correctly
@@ -30,11 +30,11 @@
       - goaccess_source_version is string
     quiet: true
 
-- name: test if goaccess_source_dependency_packages is set correctly
+- name: test if goaccess_source_buildtool_packages is set correctly
   ansible.builtin.assert:
     that:
-      - goaccess_source_dependency_packages is iterable or
-        goaccess_source_dependency_packages is string
+      - goaccess_source_buildtool_packages is iterable or
+        goaccess_source_buildtool_packages is string
     quiet: true
 
 ### Role Variables for creating a GoAccess Configuration File ###

@@ -62,13 +62,6 @@ must be installed on the Ansible controller.
 
 [source,yaml]
 ----
-goaccess_dependency_packages: [OS-dependant by default, see /defaults directory]
-----
-List of packages to install from the system's package manager.
-See https://github.com/allinurl/goaccess#distribution-packages[GoAccess Official Documentation] for reference.
-
-[source,yaml]
-----
 goaccess_install_method: "{{ 'source' if ansible_os_family != 'RedHat' else 'system' }}"
 ----
 One of "`source`" or "`system`".
@@ -152,9 +145,22 @@ The goaccess version string to check against.
 
 [source,yaml]
 ----
-goaccess_source_dependency_packages: [OS-dependant by default, see /defaults directory]
+goaccess_source_buildtool_packages: [OS-dependant by default, see /defaults directory]
 ----
-List of packages to install from the system's package manager.
+List of packages needed for building GoAccess from source
+(`gcc`, `autoconf`, `gettext`, `autopoint` etc)
+which will be installed using the system's package manager.
+
+
+[source,yaml]
+----
+goaccess_source_system_packages: [OS-dependant by default, see /defaults directory]
+----
+List of dependencies needed in some distros to build GoAccess from source
+(`NCurses` (required), `GeoIP` / `GeoIP2` (optional), `OpenSSL` (optional))
+which will be installed using the system's package manager.
+The default value of this mostly represents
+https://github.com/allinurl/goaccess#distribution-packages[the table found in the official documentation].
 
 [source,yaml]
 ----
