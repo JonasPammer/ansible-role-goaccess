@@ -737,15 +737,6 @@ must be installed on the Ansible controller.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_dependency_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>List of packages to install from the system&#8217;s package manager.
-See <a href="https://github.com/allinurl/goaccess#distribution-packages">GoAccess Official Documentation</a> for reference.</p>
-</div>
-<div class="listingblock">
-<div class="content">
 <pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_install_method</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">'source'</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">ansible_os_family</span><span class="nv"> </span><span class="s">!=</span><span class="nv"> </span><span class="s">'RedHat'</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">'system'</span><span class="nv"> </span><span class="s">}}"</span></code></pre>
 </div>
 </div>
@@ -853,11 +844,25 @@ this role installs the latest available <code>goaccess</code> from the system re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_dependency_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_buildtool_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>List of packages to install from the system&#8217;s package manager.</p>
+<p>List of packages needed for building GoAccess from source
+(<code>gcc</code>, <code>autoconf</code>, <code>gettext</code>, <code>autopoint</code> etc)
+which will be installed using the system&#8217;s package manager.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">goaccess_source_system_packages</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">OS-dependant by default</span><span class="pi">,</span> <span class="nv">see /defaults directory</span><span class="pi">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List of dependencies needed in some distros to build GoAccess from source
+(<code>NCurses</code> (required), <code>GeoIP</code> / <code>GeoIP2</code> (optional), <code>OpenSSL</code> (optional))
+which will be installed using the system&#8217;s package manager.
+The default value of this mostly represents
+<a href="https://github.com/allinurl/goaccess#distribution-packages">the table found in the official documentation</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3491,7 +3496,7 @@ SOFTWARE.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-12 20:52:28 UTC
+Last updated 2023-05-12 21:36:11 UTC
 </div>
 </div>
 </body>
