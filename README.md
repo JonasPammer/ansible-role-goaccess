@@ -387,7 +387,6 @@ The default time format works with any of the Apache/NGINX’s log formats denot
 > `DEFINITION space/tab colorFG#:colorBG# [[attributes,] PANEL]`
 >
 > - `FG#` = foreground color number \[-1…​255\] (-1 = default terminal color)
->
 > - `BG#` = background color number \[-1…​255\] (-1 = default terminal color)
 >
 > Optionally:
@@ -775,7 +774,6 @@ Note that when `goaccess_conf_log_dir_alter` is true, this role will implicitly 
 > Available orders:
 >
 > - ASC
->
 > - DESC
 >
 > **Example**
@@ -866,13 +864,11 @@ Feature Request for automating this using this role tracked in <https://github.c
 > IPv4 Country database:
 >
 > - Download the GeoIP.dat.gz
->
 > - gunzip GeoIP.dat.gz
 >
 > IPv4 City database:
 >
 > - Download the GeoIPCity.dat.gz
->
 > - gunzip GeoIPCity.dat.gz
 
     goaccess_conf_std_geopip: ~
