@@ -1111,6 +1111,10 @@ The tested ansible versions try to stay equivalent with the [ support pattern of
 
 - 2.13 (Ansible 6)
 
+- 2.14 (Ansible 7)
+
+- 2.15 (Ansible 8)
+
 # 📝 Development
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/JonasPammer/ansible-role-goaccess/master.svg)](https://results.pre-commit.ci/latest/github/JonasPammer/ansible-role-goaccess/master)
@@ -1186,7 +1190,7 @@ For a list of possible values fed to `MOLECULE_DISTRO`, take a look at the matri
         Python 3.8.10
         root@instance-py3-ansible-2:/# ...
 
-    If the failure you try to debug is part of `verify.yml` step and not the actual `converge.yml`, you may want to know that the output of ansible’s modules (`vars`), hosts (`hostvars`) and environment variables have been stored into files on both the provisioner and inside the docker machine under: \* `/var/tmp/vars.yml` \* `/var/tmp/hostvars.yml` \* `/var/tmp/environment.yml` `grep`, `cat` or transfer these as you wish!
+    If the failure you try to debug is part of your `verify.yml` step and not the actual `converge.yml`, you may want to know that the output of ansible’s modules (`vars`), hosts (`hostvars`) and environment variables have been stored into files on both the provisioner and inside the docker machine under: \* `/var/tmp/vars.yml` (contains host variables under the `hostvars` key) \* `/var/tmp/environment.yml` `grep`, `cat` or transfer these as you wish!
 
     You may also want to know that the files mentioned in the admonition above are attached to the **GitHub CI Artifacts** of a given Workflow run.
     This allows one to check the difference between runs and thus help in debugging what caused the bit-rot or failure in general.
