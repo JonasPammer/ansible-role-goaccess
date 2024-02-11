@@ -31,16 +31,16 @@ name: CI (Lint + Molecule)
         description: "Select Ansible Versions to run"
         required: false
         type: choice
+        # (minimum)
         default: "ansible-6"
         options:
-          - ansible-4,ansible-5,ansible-6,ansible-7,ansible-8
-          - ansible-4,ansible-5,ansible-6
-          - ansible-7,ansible-8
-          - ansible-4
-          - ansible-5
+          - ansible-6,ansible-7,ansible-8,ansible-9
+          - ansible-7,ansible-8,ansible-9
+          - ansible-8,ansible-9
           - ansible-6
           - ansible-7
           - ansible-8
+          - ansible-9
   pull_request:
     branches-ignore:
       - renovate/**
@@ -158,7 +158,6 @@ jobs:
         run: tox
         env:
           TOX_SKIP_ENV: pre-commit
-          TOX_PARALLEL_NO_SPINNER: 1
           MOLECULE_DISTRO: ${{ matrix.distro }}
         if: github.event_name != 'workflow_dispatch'
 
@@ -167,7 +166,6 @@ jobs:
         env:
           TOXENV: py3-${{ github.event.inputs.ansible_version }}
           TOX_SKIP_ENV: pre-commit
-          TOX_PARALLEL_NO_SPINNER: 1
           MOLECULE_DISTRO: ${{ matrix.distro }}
           MOLECULE_DESTROY: never
         if: env.WORKFLOW_DISPATCH_IF == 'true'
