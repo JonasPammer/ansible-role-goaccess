@@ -1,6 +1,6 @@
 = ansible-role-goaccess
 Jonas Pammer <opensource@jonaspammer.at>;
-:toc:
+:toc: left
 :toclevels: 3
 :toc-placement!:
 :source-highlighter: rouge
