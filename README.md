@@ -38,22 +38,17 @@ Below you can find information on…
         # note: text after "actively tested: " represent the docker image name
         - name: EL # (Enterprise Linux)
           versions:
-            - "8" # actively tested: rockylinux8
             - "9" # actively tested: rockylinux9
         - name: Fedora
           versions:
-            - "35" # actively tested: fedora35
-            - "36" # actively tested: fedora36
-            - "37" # actively tested: fedora37
             - "38" # actively tested: fedora38
+            - "39" # actively tested: fedora39
         - name: Debian
           versions:
-            - buster # actively tested: debian10
             - bullseye # actively tested: debian11
+            - bookworm # actively tested: debian12
         - name: Ubuntu
           versions:
-            - xenial # actively tested: ubuntu1604
-            - bionic # actively tested: ubuntu1804
             - focal # actively tested: ubuntu2004
             - jammy # actively tested: ubuntu2204
 
@@ -1030,73 +1025,38 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><p>RedHat</p></td>
-<td style="text-align: left;"><p>Fedora 35</p></td>
-<td style="text-align: left;"><p>2021-11</p></td>
-<td style="text-align: left;"><p>2022-11</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora35-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora35-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><p>RedHat</p></td>
-<td style="text-align: left;"><p>Fedora 36</p></td>
-<td style="text-align: left;"><p>2022-05</p></td>
-<td style="text-align: left;"><p>2023-05</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora36-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora36-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><p>RedHat</p></td>
-<td style="text-align: left;"><p>Fedora 37</p></td>
-<td style="text-align: left;"><p>2022-11</p></td>
-<td style="text-align: left;"><p>2023-12</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora37-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora37-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><p>RedHat</p></td>
-<td style="text-align: left;"><p>Fedora 38</p></td>
-<td style="text-align: left;"><p>2023-03</p></td>
-<td style="text-align: left;"><p>2024-05</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora38-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora38-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><p>Debian</p></td>
-<td style="text-align: left;"><p>Ubuntu 1604</p></td>
-<td style="text-align: left;"><p>2016-04</p></td>
-<td style="text-align: left;"><p>2026-04</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu1604-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu1604-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
+<td style="text-align: left;"><p>Fedora 39</p></td>
+<td style="text-align: left;"><p>2023-11</p></td>
+<td style="text-align: left;"><p>2024-12</p></td>
+<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora39-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora39-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p>Debian</p></td>
-<td style="text-align: left;"><p>Ubuntu 1804</p></td>
-<td style="text-align: left;"><p>2018-04</p></td>
-<td style="text-align: left;"><p>2028-04</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu1804-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu1804-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><p>Debian</p></td>
-<td style="text-align: left;"><p>Ubuntu 2004</p></td>
+<td style="text-align: left;"><p>Ubuntu 20.04 LTS</p></td>
 <td style="text-align: left;"><p>2021-04</p></td>
-<td style="text-align: left;"><p>2030-04</p></td>
+<td style="text-align: left;"><p>2025-04</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2004-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2004-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><p>Debian</p></td>
-<td style="text-align: left;"><p>Ubuntu 2204</p></td>
-<td style="text-align: left;"><p>2022-04</p></td>
-<td style="text-align: left;"><p>2032-04</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2204-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
 <tr class="odd">
 <td style="text-align: left;"><p>Debian</p></td>
-<td style="text-align: left;"><p>Debian 10</p></td>
-<td style="text-align: left;"><p>2019-07</p></td>
-<td style="text-align: left;"><p>2022-08</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-debian10-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-debian10-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
+<td style="text-align: left;"><p>Ubuntu 22.04 LTS</p></td>
+<td style="text-align: left;"><p>2022-04</p></td>
+<td style="text-align: left;"><p>2027-04</p></td>
+<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2204-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Debian 11</p></td>
 <td style="text-align: left;"><p>2021-08</p></td>
-<td style="text-align: left;"><p>2024-07~</p></td>
+<td style="text-align: left;"><p>2024-06 (2026-06 LTS)</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-debian11-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-debian11-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Debian</p></td>
+<td style="text-align: left;"><p>Debian 12</p></td>
+<td style="text-align: left;"><p>2023-06</p></td>
+<td style="text-align: left;"><p>2026-06 (2028-06 LTS)</p></td>
+<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-debian12-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-debian12-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1177,7 +1137,7 @@ For a list of possible values fed to `MOLECULE_DISTRO`, take a look at the matri
 2.  Find out the name of the molecule-provisioned docker container:
 
         $ docker ps
-        30e9b8d59cdf   geerlingguy/docker-debian10-ansible:latest   "/lib/systemd/systemd"   8 minutes ago   Up 8 minutes                                                                                                    instance-py3-ansible-9
+        30e9b8d59cdf   geerlingguy/docker-debian12-ansible:latest   "/lib/systemd/systemd"   8 minutes ago   Up 8 minutes                                                                                                    instance-py3-ansible-9
 
 3.  Get into a bash Shell of the container, and do your debugging:
 
