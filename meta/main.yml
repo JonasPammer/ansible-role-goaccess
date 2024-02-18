@@ -2,7 +2,6 @@
 galaxy_info:
   role_name: "goaccess"
   description: "An ansible role for installing GoAccess, a real-time web log analyzer that runs in a terminal or the browser."
-  standalone: true
 
   author: "jonaspammer"
   license: "MIT"
