@@ -70,7 +70,7 @@ One of “source” or “system”.
 
 I could not get install from source method to work for RedHat because of error as seen in [this CI run](https://github.com/JonasPammer/ansible-role-goaccess/runs/7031791748?check_suite_focus=true):
 
->       TASK [ansible-role-goaccess : Execute autoreconf.] *****************************
+>   TASK [ansible-role-goaccess : Execute autoreconf.] *****************************
 >       fatal: [instance-py3-ansible-5-fedora35]: FAILED! => changed=false
 >         cmd:
 >         - autoreconf
@@ -939,13 +939,13 @@ Tasks are tagged with the following [tags](https://docs.ansible.com/ansible/late
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Tag</th>
 <th style="text-align: left;">Purpose</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td colspan="2" style="text-align: left;"><p>This role does not have officially documented tags yet.</p></td>
 </tr>
 </tbody>
@@ -1002,7 +1002,7 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 <col style="width: 20%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">OS Family</th>
 <th style="text-align: left;">Distribution</th>
 <th style="text-align: left;">Distribution Release Date</th>
@@ -1011,49 +1011,49 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>Rocky</p></td>
 <td style="text-align: left;"><p>Rocky Linux 8 (<a href="https://www.howtogeek.com/devops/is-rocky-linux-the-new-centos/">RHEL/CentOS 8 in disguise</a>)</p></td>
 <td style="text-align: left;"><p>2021-06</p></td>
 <td style="text-align: left;"><p>2029-05</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-rockylinux8-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-rockylinux8-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>Rocky</p></td>
 <td style="text-align: left;"><p>Rocky Linux 9</p></td>
 <td style="text-align: left;"><p>2022-07</p></td>
 <td style="text-align: left;"><p>2032-05</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-rockylinux9-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-rockylinux9-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>RedHat</p></td>
 <td style="text-align: left;"><p>Fedora 39</p></td>
 <td style="text-align: left;"><p>2023-11</p></td>
 <td style="text-align: left;"><p>2024-12</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora39-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora39-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Ubuntu 20.04 LTS</p></td>
 <td style="text-align: left;"><p>2021-04</p></td>
 <td style="text-align: left;"><p>2025-04</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2004-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2004-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Ubuntu 22.04 LTS</p></td>
 <td style="text-align: left;"><p>2022-04</p></td>
 <td style="text-align: left;"><p>2027-04</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2204-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Debian 11</p></td>
 <td style="text-align: left;"><p>2021-08</p></td>
 <td style="text-align: left;"><p>2024-06 (2026-06 LTS)</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-debian11-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-debian11-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Debian 12</p></td>
 <td style="text-align: left;"><p>2023-06</p></td>
