@@ -188,5 +188,5 @@ jobs:
 
       - name: setup tmate session if previous step failed and if this is a manual run
         if: failure() && env.WORKFLOW_DISPATCH_IF == 'true'
-        uses: mxschmitt/action-tmate@e5c7151931ca95bad1c6f4190c730ecf8c7dde48 # v3
+        uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3
         timeout-minutes: 30
